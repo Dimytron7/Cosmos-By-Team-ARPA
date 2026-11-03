@@ -137,6 +137,14 @@
         const form = document.getElementById('formContacto');
         if (!form) return;
         form.action = 'https://formsubmit.co/' + FORMSUBMIT_ID;
+        // Al terminar el envío normal, FormSubmit devuelve a la persona a esta misma página con ?enviado=1
+        if (location.protocol.indexOf('http') === 0) {
+            const siguiente = document.createElement('input');
+            siguiente.type = 'hidden';
+            siguiente.name = '_next';
+            siguiente.value = new URL('Contacto.html?enviado=1', location.href).href;
+            form.appendChild(siguiente);
+        }
         const caja = document.getElementById('mensajeGracias');
         const cuenta = document.getElementById('cuentaAtras');
 
@@ -154,6 +162,8 @@
                 if (segundos <= 0) { clearInterval(reloj); window.location.href = 'Cosmos.html'; }
             }, 1000);
         }
+
+        if (/[?&]enviado=1/.test(location.search)) mostrarGracias();
 
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -179,6 +189,11 @@
                     throw new Error(datos.message || ('Error ' + resp.status));
                 }
             } catch (err) {
+                if (err instanceof TypeError) {
+                    // No hubo conexión con el envío AJAX (red, bloqueo o permisos): se envía de forma normal
+                    form.submit();
+                    return;
+                }
                 boton.disabled = false;
                 boton.textContent = textoOriginal;
                 aviso.textContent = 'No se pudo enviar el mensaje. ' + (err && err.message ? err.message : '') + ' Inténtalo de nuevo.';
