@@ -752,15 +752,17 @@ html .form-contacto textarea:focus {
 
 /* ===== Glosario flotante y botón de pantalla completa (simulaciones) ===== */
 .termino { border-bottom: 2px dotted var(--accent-brown); cursor: help; position: relative; font-weight: 600; }
+.learn-box li { position: relative; }
+.termino { position: static; }
 .termino::after {
-    content: attr(data-def); display: none; position: absolute; left: 0; bottom: 130%; width: 230px; max-width: 70vw;
-    background: #1a1a1a; color: #fff; padding: 8px 10px; border-radius: 10px; font-size: 12px; font-weight: 400; line-height: 1.4;
-    pointer-events: none; z-index: 20; box-shadow: 0 6px 18px rgba(0,0,0,.3);
+    content: attr(data-def); display: none; position: absolute; left: 0; bottom: 100%; margin-bottom: 6px;
+    width: max-content; max-width: min(260px, 100%);
+    background: var(--accent-brown); color: #fff; padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 400; line-height: 1.4;
+    pointer-events: none; z-index: 20; box-shadow: 0 6px 18px rgba(0,0,0,.35);
 }
-/* display:none mientras está oculto: así el globo no ensancha la página ni hace que el móvil reduzca el zoom */
+/* display:none mientras está oculto: así el globo no ensancha la página. Se ancla a la línea (li), así nunca se sale de la caja */
 .termino:hover::after, .termino:focus::after { display: block; animation: termino-in .2s ease; }
 @keyframes termino-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-.termino:nth-last-child(-n+1):hover::after { left: auto; right: 0; }
 .btn-pantalla {
     display: block; margin: 12px auto 0; padding: 10px 20px; border-radius: 20px; border: none; cursor: pointer;
     background: var(--accent-brown); color: #fff; font-weight: 600; font-size: 13px; transition: transform .25s, box-shadow .3s;
