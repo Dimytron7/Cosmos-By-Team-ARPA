@@ -49,26 +49,26 @@
                     <p class="gracias-texto">Tu mensaje fue enviado correctamente.<br>Volverás al inicio en <strong id="cuentaAtras">5</strong> segundos…</p>
                     <a class="gracias-enlace" href="Cosmos.html">Ir ahora al inicio</a>
                 </div>
-                <form id="formContacto" class="form-contacto" method="POST">
+                <form id="formContacto" class="form-contacto" action="https://api.web3forms.com/submit" method="POST">
 
-                    <input type="hidden" name="_subject" value="[Cosmos Plataforma Educativa] Nuevo mensaje de contacto">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input class="oculto-total" type="text" name="_honey" tabindex="-1" autocomplete="off">
+                    <input type="hidden" name="access_key" value="409f8eb5-bc2c-48e1-b142-de577f5f8ce4">
+                    <input type="hidden" name="subject" value="[Cosmos Plataforma Educativa] Nuevo mensaje de contacto">
+                    <input type="hidden" name="from_name" value="COSMOS">
+                    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
                     <span class="input-span">
                         <label for="nombre" class="label">Tu Nombre</label>
-                        <input type="text" id="nombre" name="Nombre" placeholder="Ej. Ana Pérez" required>
+                        <input type="text" id="nombre" name="name" placeholder="Ej. Ana Pérez" required>
                     </span>
 
                     <span class="input-span">
                         <label for="email" class="label">Correo Electrónico</label>
-                        <input type="email" id="email" name="Correo" placeholder="correo@ejemplo.com" required>
+                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
                     </span>
 
                     <span class="input-span">
                         <label for="mensaje" class="label">Mensaje</label>
-                        <textarea id="mensaje" name="Mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                        <textarea id="mensaje" name="message" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
                     </span>
 
                     <button type="submit" class="submit">Enviar Mensaje</button>
@@ -132,21 +132,19 @@
     </footer>
 <script>
     (function () {
-        // Destino del formulario: aquí va el alias aleatorio de FormSubmit en lugar del correo.
-        const FORMSUBMIT_ID = '1032681754@teinco.edu.co';
         const form = document.getElementById('formContacto');
         if (!form) return;
-        form.action = 'https://formsubmit.co/' + FORMSUBMIT_ID;
-        // Al terminar el envío normal, FormSubmit devuelve a la persona a esta misma página con ?enviado=1
+        const caja = document.getElementById('mensajeGracias');
+        const cuenta = document.getElementById('cuentaAtras');
+
+        // Al terminar un envío normal, Web3Forms devuelve a la persona a esta página con ?enviado=1
         if (location.protocol.indexOf('http') === 0) {
             const siguiente = document.createElement('input');
             siguiente.type = 'hidden';
-            siguiente.name = '_next';
+            siguiente.name = 'redirect';
             siguiente.value = new URL('Contacto.html?enviado=1', location.href).href;
             form.appendChild(siguiente);
         }
-        const caja = document.getElementById('mensajeGracias');
-        const cuenta = document.getElementById('cuentaAtras');
 
         const aviso = document.createElement('p');
         aviso.style.cssText = 'color:#c0392b; font-size:13px; margin-top:10px; display:none;';
@@ -174,23 +172,21 @@
             boton.textContent = 'Enviando...';
 
             try {
-                // Mismo servicio, pero por el endpoint AJAX: devuelve una respuesta real que podemos revisar
-                const url = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-                const resp = await fetch(url, {
+                const resp = await fetch(form.action, {
                     method: 'POST',
                     headers: { 'Accept': 'application/json' },
                     body: new FormData(form)
                 });
                 const datos = await resp.json().catch(function () { return {}; });
-                console.log('FormSubmit respondió:', resp.status, datos);
-                if (resp.ok && String(datos.success) === 'true') {
+                console.log('Web3Forms respondió:', resp.status, datos);
+                if (resp.ok && datos.success === true) {
                     mostrarGracias();
                 } else {
                     throw new Error(datos.message || ('Error ' + resp.status));
                 }
             } catch (err) {
                 if (err instanceof TypeError) {
-                    // No hubo conexión con el envío AJAX (red, bloqueo o permisos): se envía de forma normal
+                    // Sin conexión con el envío AJAX (red o bloqueo): se envía de forma normal
                     form.submit();
                     return;
                 }
