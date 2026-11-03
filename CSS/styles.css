@@ -708,7 +708,6 @@ html[data-tema="morado"] .btn-primary {
     --glow: #8A1FB5;
 }
 
-/* ===== Formulario de contacto (adaptado de Uiverse bociKond) ===== */
 .form-contacto { display: flex; flex-direction: column; gap: 1.1rem; width: 100%; }
 .form-contacto .input-span { width: 100%; display: flex; flex-direction: column; gap: .5rem; }
 .form-contacto .label { align-self: flex-start; color: var(--accent-brown); font-weight: 600; font-size: 14px; }
@@ -737,7 +736,6 @@ html .form-contacto textarea:focus {
 .form-contacto .submit:active { transform: scale(.97); }
 @media (prefers-reduced-motion: reduce) { .form-contacto .submit { transition: none; } }
 
-/* ===== Loader (adaptado de Uiverse alexruix) con los colores del tema ===== */
 .cosmos-loader { width: 80px; height: 50px; position: relative; margin: 0 auto; }
 .cosmos-loader-text { position: absolute; top: 0; color: var(--c2, #6CB6FF); animation: cl-text 3.5s ease both infinite; font-size: .8rem; letter-spacing: 1px; }
 .cosmos-load { background-color: var(--accent-brown, #1F6FE0); border-radius: 50px; display: block; height: 16px; width: 16px; bottom: 0; position: absolute; transform: translateX(64px); animation: cl-loading 3.5s ease both infinite; }
@@ -750,7 +748,6 @@ html .form-contacto textarea:focus {
 @keyframes cl-loading2 { 0%{transform:translateX(0);width:16px} 40%{transform:translateX(0);width:80%} 80%{width:100%;transform:translateX(0)} 90%{width:80%;transform:translateX(15px)} 100%{transform:translateX(0);width:16px} }
 @media (prefers-reduced-motion: reduce) { .cosmos-loader *, .cosmos-loader *::before { animation: none !important; } }
 
-/* ===== Glosario flotante y botón de pantalla completa (simulaciones) ===== */
 .termino { border-bottom: 2px dotted var(--accent-brown); cursor: help; position: relative; font-weight: 600; }
 .learn-box li { position: relative; }
 .termino { position: static; }
@@ -760,7 +757,6 @@ html .form-contacto textarea:focus {
     background: var(--accent-brown); color: #fff; padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 400; line-height: 1.4;
     pointer-events: none; z-index: 20; box-shadow: 0 6px 18px rgba(0,0,0,.35);
 }
-/* display:none mientras está oculto: así el globo no ensancha la página. Se ancla a la línea (li), así nunca se sale de la caja */
 .termino:hover::after, .termino:focus::after { display: block; animation: termino-in .2s ease; }
 @keyframes termino-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 .btn-pantalla {
@@ -773,7 +769,6 @@ html .form-contacto textarea:focus {
 .faq-item summary { cursor: pointer; font-weight: 600; }
 .faq-item p { margin-top: 10px; line-height: 1.6; opacity: .85; }
 
-/* ===== Pasos con etiquetas de color y flecha de preguntas frecuentes (tooltip) ===== */
 .pasos-lista { display: flex; flex-direction: column; gap: 16px; }
 .paso-fila { display: flex; align-items: flex-start; gap: 14px; }
 .paso-fila .badge-cat { flex: none; margin-top: 2px; white-space: nowrap; }
@@ -794,7 +789,6 @@ html .form-contacto textarea:focus {
     padding: .3em .7em; border-radius: 4px; background: var(--background); color: #fff; font-size: 12px; font-weight: 600;
     white-space: nowrap; opacity: 0; pointer-events: none; transition: all .3s; box-shadow: 0 2px 4px rgba(0,0,0,.12); z-index: 10;
 }
-/* aparece hacia abajo: parte pegado al botón y se desliza debajo */
 .faq-tip { bottom: auto; top: 60%; }
 .faq-tip::before { content: ""; position: absolute; height: .6em; width: .6em; top: -.2em; left: 50%; transform: translate(-50%) rotate(45deg); background: var(--background); }
 .faq-item summary:hover .faq-tip { top: 140%; opacity: 1; transform: translateX(-50%) scale(1); }
@@ -802,7 +796,6 @@ html .form-contacto textarea:focus {
 .faq-item:not([open]) .t-abrir, .faq-item[open] .t-cerrar { display: inline-block; }
 @media (prefers-reduced-motion: reduce) { .faq-flecha, .faq-tip { transition: none; } }
 
-/* ===== Estilos que antes estaban escritos dentro del HTML ===== */
 html body .hero-unico { grid-template-columns: 1fr; }
 html body .hero-centro { text-align: center; padding: 40px 20px; }
 html body .hero-texto-700 { max-width: 700px; margin: 0 auto; color: #E0E0E0; }
@@ -832,7 +825,6 @@ html body .ancho-total { width: 100%; }
 html body .logo-enlace { text-decoration: none; color: inherit; }
 html body .enlace-plano { text-decoration: none; color: inherit; display: inline-block; }
 html body .sin-resultados { grid-column: 1 / -1; text-align: center; color: #777; padding: 20px; }
-
 
 .credito-sim { margin-top: 14px; font-size: 13px; color: #555; text-align: center; }
 

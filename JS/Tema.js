@@ -1,8 +1,6 @@
 (function () {
-    // Nombres visuales nuevos para los botones y menús
     var TEMAS = ['sea', 'blush', 'sunshine', 'mocha', 'nebula'];
     
-    // Mapeo interno para que el CSS (que usa los nombres antiguos) no se rompa
     var MAPA_CSS = {
         sea: 'azul',
         blush: 'rosa',
@@ -45,7 +43,6 @@
 
     function actual() { return temaManual() || TEMAS[Math.floor((Date.now() - t0) / DURACION) % TEMAS.length]; }
 
-    // Función auxiliar para aplicar el tema al HTML usando el nombre que entiende el CSS
     function aplicarTemaEnHtml(idTema) {
         var nombreCss = MAPA_CSS[idTema] || idTema;
         if (raiz.getAttribute('data-tema') !== nombreCss) {
@@ -110,7 +107,6 @@
             auto.setAttribute('aria-pressed', m ? 'false' : 'true');
             var temaActualHtml = raiz.getAttribute('data-tema');
             TEMAS.forEach(function (id) {
-                // Compara tanto el id nuevo como su equivalente en CSS para mantener activo el botón correcto
                 var coincide = (id === m) || (MAPA_CSS[id] === temaActualHtml);
                 botones[id].classList.toggle('on', coincide);
             });

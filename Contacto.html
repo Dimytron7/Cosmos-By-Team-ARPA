@@ -137,7 +137,6 @@
         const caja = document.getElementById('mensajeGracias');
         const cuenta = document.getElementById('cuentaAtras');
 
-        // Al terminar un envío normal, Web3Forms devuelve a la persona a esta página con ?enviado=1
         if (location.protocol.indexOf('http') === 0) {
             const siguiente = document.createElement('input');
             siguiente.type = 'hidden';
@@ -186,7 +185,6 @@
                 }
             } catch (err) {
                 if (err instanceof TypeError) {
-                    // Sin conexión con el envío AJAX (red o bloqueo): se envía de forma normal
                     form.submit();
                     return;
                 }
