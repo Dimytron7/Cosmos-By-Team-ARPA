@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Minimuseo Escolar Interactivo</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="JS/Tema.js"></script>
+</head>
+<body class="inicio">
+
+    <header class="navbar" id="navbar">
+        <a href="Cosmos.html" class="logo logo-enlace">COSMOS</a>
+        <nav class="nav-links">
+            <a href="Cosmos.html" class="active">Inicio</a>
+            <a href="Acerca-De.html">Acerca de</a>
+            <a href="Catalogo.html">Catálogo</a>
+            <a href="Contacto.html">Contacto</a>
+            <button onclick="alternarModoOscuro()" title="Alternar modo oscuro/claro">
+                🌓 Tema
+            </button>
+        </nav>
+        <form class="search-box" onsubmit="realizarBusqueda(event)">
+            <span class="search-icon">🔍</span>
+            <input type="search" id="campoBusqueda" placeholder="Buscar simulaciones..." required>
+        </form>
+    </header>
+
+    <main>
+        <section class="hero" id="heroSlider">
+        </section>
+
+        <div class="hero-subcontrols">
+            <a href="Catalogo.html?area=todas" class="salas-selector enlace-plano">Todas las salas</a>
+            <a href="Catalogo.html" class="btn-dark-solid">Explorar catálogo</a>
+        </div>
+
+        <section class="salas-section">
+            <h2>Explora nuestras salas</h2>
+            <div class="salas-grid" id="salasGrid">
+                <a href="Catalogo.html?area=Física" class="sala-btn-tag">Física</a>
+                <a href="Catalogo.html?area=Matemáticas y Estadística" class="sala-btn-tag">Matemáticas y Estadística</a>
+                <a href="Catalogo.html?area=Química" class="sala-btn-tag">Química</a>
+                <a href="Catalogo.html?area=Tierra y Espacio" class="sala-btn-tag">Tierra y Espacio</a>
+                <a href="Catalogo.html?area=Biología" class="sala-btn-tag">Biología</a>
+            </div>
+            <p class="salas-footer-text">Descubre las áreas en la colección destacada.</p>
+        </section>
+
+        <div class="stats-bar">
+            <div class="stat-pill" id="totalSimsCount">0 simulaciones disponibles</div>
+            <div class="stat-pill" id="totalAreasCount">0 áreas de conocimiento</div>
+        </div>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <div>
+                    <h2>Simulaciones Destacadas</h2>
+                    <p>Explora las piezas de laboratorio más populares de nuestra colección.</p>
+                </div>
+            </div>
+
+            <div class="cards-grid" id="dynamicCardsGrid">
+                <div class="cargando-wrap"><div class="cosmos-loader" role="status" aria-label="Cargando"><span class="cosmos-loader-text">cargando</span><span class="cosmos-load"></span></div></div>
+            </div>
+        </section>
+
+        <section class="interactions-section">
+            <h2>Últimas Interacciones</h2>
+            <table class="interactions-table">
+                <thead>
+                    <tr>
+                        <th>Simulación</th>
+                        <th>Acción Realizada / Visita</th>
+                    </tr>
+                </thead>
+                <tbody id="interactionsTableBody">
+                    <tr>
+                        <td class="fila-vacia" colspan="2">Aún no hay interacciones recientes. ¡Explora una simulación!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="footer-olas">
+        <svg class="olas" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,300 C260,190 720,110 1200,0 L1200,300 Z" fill="var(--c1)" opacity=".55"/>
+            <path d="M140,300 C480,215 850,150 1200,45 L1200,300 Z" fill="var(--c2)" opacity=".7"/>
+            <path d="M380,300 C680,250 980,195 1200,105 L1200,300 Z" fill="var(--c3)" opacity=".85"/>
+            <path d="M640,300 C860,282 1050,245 1200,175 L1200,300 Z" fill="var(--c4)"/>
+        </svg>
+        <div class="contenido">
+            <div class="marca">
+                <h2>COSMOS</h2>
+                <small>Minimuseo escolar interactivo</small>
+                <hr>
+                <p class="lema">Explora lo invisible. Aprende experimentando.</p>
+                <p>Únete a la nueva era del aprendizaje científico interactivo en nuestro minimuseo escolar.</p>
+            </div>
+            <div class="columna">
+                <h4>Explorar</h4>
+                <a href="Cosmos.html">Inicio</a>
+                <a href="Catalogo.html">Catálogo</a>
+                <a href="Acerca-De.html">Acerca de</a>
+                <a href="Contacto.html">Contacto</a>
+            </div>
+            <div class="columna">
+                <h4>Salas</h4>
+                <a href="Catalogo.html?area=F%C3%ADsica">Física</a>
+                <a href="Catalogo.html?area=Matem%C3%A1ticas%20y%20Estad%C3%ADstica">Matemáticas y Estadística</a>
+                <a href="Catalogo.html?area=Qu%C3%ADmica">Química</a>
+                <a href="Catalogo.html?area=Tierra%20y%20Espacio">Tierra y Espacio</a>
+                <a href="Catalogo.html?area=Biolog%C3%ADa">Biología</a>
+            </div>
+            <div class="columna">
+                <h4>El proyecto</h4>
+                <span>Creado por Dimytron7</span>
+                <span>Para TEINCO, Colombia</span>
+                <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
+                <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
+            </div>
+        </div>
+        <div class="pie-inferior">
+        <img class="logo-arpa" src="img/logo-arpa.svg" alt="ARPA Smart by Nature">
+        <div class="base">
+            <strong>COSMOS</strong>
+            <div class="contador">
+                <span class="contador-t">Visitas en este navegador</span>
+                <div class="contador-fila">
+                    <span class="contador-num" id="globalPageViews">0</span>
+                    <a href="Acerca-De.html" class="contador-mas" title="Ver Estadísticas y Acerca de">+</a>
+                </div>
+            </div>
+            <span>© 2026 COSMOS. Ciencia para todos.</span>
+        </div>
+        </div>
+    </footer>
+
+    <script src="JS/Metricas.js"></script>
+    <script src="JS/Registro.js"></script>
+    <script>
+        let experimentosDB = [];
+
+        function resumir(texto, max) {
+            if (texto.length <= max) return texto;
+            return texto.substring(0, texto.lastIndexOf(' ', max)) + '...';
+        }
+
+        function escaparHTML(t) {
+            const d = document.createElement('div');
+            d.textContent = t;
+            return d.innerHTML;
+        }
+
+        async function cargarExperimentosDesdeArchivos() {
+            experimentosDB = [];
+            for (const file of registryFiles) {
+                try {
+                    const response = await fetch(file);
+                    const htmlText = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, "text/html");
+
+                    const exp = {
+                        id: doc.querySelector('meta[name="experiment-id"]')?.content || "exp",
+                        nombre: doc.querySelector('meta[name="experiment-title"]')?.content || "Simulación",
+                        area: doc.querySelector('meta[name="experiment-area"]')?.content || "General",
+                        claseBg: doc.querySelector('meta[name="experiment-class-bg"]')?.content || "bg-fisica",
+                        imagen: doc.querySelector('meta[name="experiment-image"]')?.content || "",
+                        heroImg: doc.querySelector('meta[name="experiment-hero-img"]')?.content || "",
+                        descripcion: doc.querySelector('meta[name="experiment-description"]')?.content || "",
+                        link: doc.querySelector('meta[name="experiment-link"]')?.content || file
+                    };
+                    experimentosDB.push(exp);
+                } catch (e) {
+                    console.error("No se pudo cargar el archivo:", file);
+                }
+            }
+            inicializarInterfaz();
+        }
+
+        let heroTimer = null;
+        let heroIdx = 0;
+
+        function renderHeroSlider() {
+            if (experimentosDB.length === 0) return;
+
+            const mezcla = [...experimentosDB];
+            for (let i = mezcla.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [mezcla[i], mezcla[j]] = [mezcla[j], mezcla[i]];
+            }
+            const elegidas = mezcla.slice(0, 5);
+            const n = elegidas.length;
+
+            const slide = item => `
+                <div class="hero-slide">
+                    <div class="hero-image">
+                        <img src="${item.heroImg}" alt="${item.nombre}">
+                    </div>
+                    <div class="hero-content">
+                        <h1>${item.nombre}</h1>
+                        <p>${item.descripcion}</p>
+                        <div class="hero-buttons">
+                            <button class="btn-outline" onclick="window.location.href='Catalogo.html'">CATÁLOGO</button>
+                            <a href="${item.link}" class="btn-primary" onclick="registrarVisita('${item.nombre}')">APRENDER</a>
+                        </div>
+                    </div>
+                </div>`;
+
+            const lista = n > 1 ? [...elegidas, elegidas[0]] : elegidas;
+            const puntos = n > 1 ? `<div class="hero-dots">${elegidas.map((_, i) => `<span class="${i === 0 ? 'on' : ''}"></span>`).join('')}</div>` : '';
+
+            const heroContainer = document.getElementById('heroSlider');
+            heroContainer.innerHTML = `<div class="hero-track" id="heroTrack">${lista.map(slide).join('')}</div>${puntos}`;
+
+            clearInterval(heroTimer);
+            heroIdx = 0;
+            if (n < 2) return;
+
+            const track = document.getElementById('heroTrack');
+            const marcas = heroContainer.querySelectorAll('.hero-dots span');
+
+            const mover = () => {
+                track.style.transform = `translateX(-${heroIdx * 100}%)`;
+                marcas.forEach((m, i) => m.classList.toggle('on', i === heroIdx % n));
+            };
+
+            track.addEventListener('transitionend', e => {
+                if (e.target !== track) return;
+                if (heroIdx === n) {
+                    track.style.transition = 'none';
+                    heroIdx = 0;
+                    track.style.transform = 'translateX(0)';
+                    void track.offsetWidth;
+                    track.style.transition = '';
+                }
+            });
+
+            heroTimer = setInterval(() => { heroIdx++; mover(); }, 6000);
+        }
+
+        function inicializarInterfaz() {
+            if (experimentosDB.length === 0) return;
+
+            document.getElementById('totalSimsCount').innerText = `${experimentosDB.length} simulaciones disponibles`;
+            const areasUnicas = [...new Set(experimentosDB.map(e => e.area))];
+            document.getElementById('totalAreasCount').innerText = `${areasUnicas.length} áreas de conocimiento`;
+
+            renderHeroSlider();
+
+            const grid = document.getElementById('dynamicCardsGrid');
+            grid.innerHTML = '';
+
+            const destacadas = [...experimentosDB].slice(0, 4);
+
+            destacadas.forEach(sim => {
+                const card = document.createElement('div');
+                card.className = 'sim-card';
+                card.innerHTML = `
+                    <div class="sim-preview" style="background-image: url('${sim.imagen}'); background-size: cover; background-position: center;"></div>
+                    <div class="sim-body">
+                        <span class="badge-cat ${sim.claseBg}">${sim.area}</span>
+                        <h3>${sim.nombre}</h3>
+                        <p>${resumir(sim.descripcion, 90)}</p>
+                        <a href="${sim.link}" class="btn-sim" onclick="registrarVisita('${sim.nombre}')">Abrir simulación →</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            cargarHistorial();
+        }
+
+        function realizarBusqueda(evento) {
+            evento.preventDefault();
+            const termino = document.getElementById('campoBusqueda').value.toLowerCase();
+            const resultados = experimentosDB.filter(exp =>
+                exp.nombre.toLowerCase().includes(termino) ||
+                exp.area.toLowerCase().includes(termino) ||
+                exp.descripcion.toLowerCase().includes(termino)
+            );
+
+            const grid = document.getElementById('dynamicCardsGrid');
+            grid.innerHTML = '';
+
+            if (resultados.length === 0) {
+                grid.innerHTML = `<p class="sin-resultados">No se encontraron simulaciones para "<strong>${escaparHTML(termino)}</strong>".</p>`;
+            } else {
+                resultados.forEach(sim => {
+                    const card = document.createElement('div');
+                    card.className = 'sim-card';
+                    card.innerHTML = `
+                        <div class="sim-preview" style="background-image: url('${sim.imagen}'); background-size: cover; background-position: center;"></div>
+                    <div class="sim-body">
+                        <span class="badge-cat ${sim.claseBg}">${sim.area}</span>
+                        <h3>${sim.nombre}</h3>
+                        <p>${resumir(sim.descripcion, 90)}</p>
+                        <a href="${sim.link}" class="btn-sim" onclick="registrarVisita('${sim.nombre}')">Abrir simulación →</a>
+                    </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+            document.querySelector('.featured-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function registrarVisita(nombreSimulacion) {
+            let historial = JSON.parse(localStorage.getItem('cosmos_historial')) || [];
+            historial = historial.filter(item => item.nombre !== nombreSimulacion);
+            historial.unshift({
+                nombre: nombreSimulacion,
+                accion: "Visitó e inició la simulación interactiva",
+                fecha: new Date().toLocaleTimeString()
+            });
+            if (historial.length > 5) historial.pop();
+            localStorage.setItem('cosmos_historial', JSON.stringify(historial));
+        }
+
+        function cargarHistorial() {
+            let historial = JSON.parse(localStorage.getItem('cosmos_historial')) || [];
+            const nombresValidos = experimentosDB.map(e => e.nombre);
+            historial = historial.filter(h => nombresValidos.includes(h.nombre));
+            localStorage.setItem('cosmos_historial', JSON.stringify(historial));
+
+            const tbody = document.getElementById('interactionsTableBody');
+            if (historial.length === 0) {
+                tbody.innerHTML = `<tr><td class="fila-vacia" colspan="2">Aún no hay interacciones recientes. ¡Explora una simulación!</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            historial.forEach(h => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${h.nombre}</strong></td>
+                    <td><span class="tag-action">${h.accion} (${h.fecha})</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+
+            cargarExperimentosDesdeArchivos().then(() => {
+                const params = new URLSearchParams(window.location.search);
+                const busq = params.get('busqueda');
+                if (busq) {
+                    document.getElementById('campoBusqueda').value = busq;
+                    realizarBusqueda({ preventDefault: () => {} });
+                }
+            });
+        });
+</script>
+</body>
+</html>
+<!-- Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. -->

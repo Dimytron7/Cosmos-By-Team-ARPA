@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es" data-hora-auto>
+<head>
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Catálogo de Experimentos</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="JS/Tema.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COSMOS</div>
+        <nav class="nav-links">
+            <a href="Cosmos.html">Inicio</a>
+            <a href="Acerca-De.html">Acerca de</a>
+            <a href="Catalogo.html" class="active">Catálogo</a>
+            <a href="Contacto.html">Contacto</a>
+            <button onclick="alternarModoOscuro()" title="Alternar modo oscuro/claro">
+                🌓 Tema
+            </button>
+        </nav>
+        <form class="search-box" onsubmit="buscarDesdeCatalogo(event)">
+            <span class="search-icon">🔍</span>
+            <input type="search" id="inputCatSearch" placeholder="Buscar simulaciones..." oninput="aplicarFiltros()">
+        </form>
+    </header>
+
+    <main class="catalog-container">
+        <div class="catalog-header">
+            <div>
+                <h1>Catálogo de experimentos</h1>
+                <p>Explora simulaciones científicas interactivas y aprende experimentando.</p>
+            </div>
+        </div>
+
+        <div class="filter-controls-bar">
+            <div class="filter-box ancho-total">
+                <span class="filter-label-title">Filtrar por área científica</span>
+                <select id="filtroArea" onchange="filtrarPorArea()">
+                    <option value="todas">Todas las áreas</option>
+                    <option value="Física">Física</option>
+                    <option value="Matemáticas y Estadística">Matemáticas y Estadística</option>
+                    <option value="Química">Química</option>
+                    <option value="Tierra y Espacio">Tierra y Espacio</option>
+                    <option value="Biología">Biología</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="cargando-wrap" id="catalogLoader"><div class="cosmos-loader" role="status" aria-label="Cargando"><span class="cosmos-loader-text">cargando</span><span class="cosmos-load"></span></div></div>
+        <div class="catalog-grid" id="catalogGrid">
+        </div>
+    </main>
+
+    <footer class="footer-olas">
+        <svg class="olas" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,300 C260,190 720,110 1200,0 L1200,300 Z" fill="var(--c1)" opacity=".55"/>
+            <path d="M140,300 C480,215 850,150 1200,45 L1200,300 Z" fill="var(--c2)" opacity=".7"/>
+            <path d="M380,300 C680,250 980,195 1200,105 L1200,300 Z" fill="var(--c3)" opacity=".85"/>
+            <path d="M640,300 C860,282 1050,245 1200,175 L1200,300 Z" fill="var(--c4)"/>
+        </svg>
+        <div class="contenido">
+            <div class="marca">
+                <h2>COSMOS</h2>
+                <small>Minimuseo escolar interactivo</small>
+                <hr>
+                <p class="lema">Explora lo invisible. Aprende experimentando.</p>
+                <p>Únete a la nueva era del aprendizaje científico interactivo en nuestro minimuseo escolar.</p>
+            </div>
+            <div class="columna">
+                <h4>Explorar</h4>
+                <a href="Cosmos.html">Inicio</a>
+                <a href="Catalogo.html">Catálogo</a>
+                <a href="Acerca-De.html">Acerca de</a>
+                <a href="Contacto.html">Contacto</a>
+            </div>
+            <div class="columna">
+                <h4>Salas</h4>
+                <a href="Catalogo.html?area=F%C3%ADsica">Física</a>
+                <a href="Catalogo.html?area=Matem%C3%A1ticas%20y%20Estad%C3%ADstica">Matemáticas y Estadística</a>
+                <a href="Catalogo.html?area=Qu%C3%ADmica">Química</a>
+                <a href="Catalogo.html?area=Tierra%20y%20Espacio">Tierra y Espacio</a>
+                <a href="Catalogo.html?area=Biolog%C3%ADa">Biología</a>
+            </div>
+            <div class="columna">
+                <h4>El proyecto</h4>
+                <span>Creado por Dimytron7</span>
+                <span>Para TEINCO, Colombia</spam>
+                <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
+                <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
+            </div>
+        </div>
+        <div class="pie-inferior">
+        <img class="logo-arpa" src="img/logo-arpa.svg" alt="ARPA Smart by Nature">
+        <div class="base">
+            <strong>COSMOS</strong>
+            <div class="contador">
+                <span class="contador-t">Visitas en este navegador</span>
+                <div class="contador-fila">
+                    <span class="contador-num" id="globalPageViews">0</span>
+                    <a href="Acerca-De.html" class="contador-mas" title="Ver Estadísticas y Acerca de">+</a>
+                </div>
+            </div>
+            <span>© 2026 COSMOS. Ciencia para todos.</span>
+        </div>
+        </div>
+    </footer>
+
+    <script src="JS/Metricas.js"></script>
+    <script src="JS/Registro.js"></script>
+    <script>
+        let catalogoDB = [];
+
+        async function cargarCatalogo() {
+            catalogoDB = [];
+            const grid = document.getElementById('catalogGrid');
+            grid.innerHTML = '';
+
+            for (const file of registryFiles) {
+                try {
+                    const response = await fetch(file);
+                    const htmlText = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, "text/html");
+
+                    const exp = {
+                        nombre: doc.querySelector('meta[name="experiment-title"]')?.content || "Simulación",
+                        area: doc.querySelector('meta[name="experiment-area"]')?.content || "General",
+                        claseBg: doc.querySelector('meta[name="experiment-class-bg"]')?.content || "bg-fisica",
+                        imagen: doc.querySelector('meta[name="experiment-image"]')?.content || "",
+                        descripcion: doc.querySelector('meta[name="experiment-description"]')?.content || "",
+                        link: doc.querySelector('meta[name="experiment-link"]')?.content || file
+                    };
+                    catalogoDB.push(exp);
+
+                    const card = document.createElement('div');
+                    card.className = 'catalog-card';
+                    card.setAttribute('data-area', exp.area);
+                    card.innerHTML = `
+                        <div class="catalog-img-container">
+                            <img src="${exp.imagen}" alt="${exp.nombre}">
+                        </div>
+                        <div class="cat-body">
+                            <span class="badge-cat ${exp.claseBg}">${exp.area}</span>
+                            <h3>${exp.nombre}</h3>
+                            <p>${exp.descripcion}</p>
+                            <a href="${exp.link}" class="btn-sim" onclick="registrarVisita('${exp.nombre}')">Abrir simulación →</a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                } catch (e) {
+                    console.error("Error al cargar tarjeta de catálogo:", file);
+                }
+            }
+            const ld = document.getElementById('catalogLoader'); if (ld) ld.remove();
+        }
+
+        function aplicarFiltros() {
+            const area = document.getElementById('filtroArea').value;
+            const termino = document.getElementById('inputCatSearch').value.toLowerCase().trim();
+
+            document.querySelectorAll('.catalog-card').forEach(card => {
+                const areaCard = card.getAttribute('data-area');
+                const texto = (card.querySelector('h3').innerText + ' ' +
+                               card.querySelector('p').innerText + ' ' + areaCard).toLowerCase();
+                const coincideArea = (area === 'todas' || areaCard === area);
+                const coincideTexto = (termino === '' || texto.includes(termino));
+                card.style.display = (coincideArea && coincideTexto) ? 'flex' : 'none';
+            });
+        }
+
+        function filtrarPorArea() { aplicarFiltros(); }
+
+        function buscarDesdeCatalogo(evento) {
+            evento.preventDefault();
+            aplicarFiltros();
+        }
+
+        function registrarVisita(nombreSimulacion) {
+            let historial = JSON.parse(localStorage.getItem('cosmos_historial')) || [];
+            historial = historial.filter(item => item.nombre !== nombreSimulacion);
+            historial.unshift({
+                nombre: nombreSimulacion,
+                accion: "Visitó desde el catálogo de experimentos",
+                fecha: new Date().toLocaleTimeString()
+            });
+            if (historial.length > 5) historial.pop();
+            localStorage.setItem('cosmos_historial', JSON.stringify(historial));
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await cargarCatalogo();
+
+            const params = new URLSearchParams(window.location.search);
+            const areaParam = params.get('area');
+            const selectFiltro = document.getElementById('filtroArea');
+
+            if (selectFiltro) {
+                if (areaParam && areaParam !== 'todas') {
+                    selectFiltro.value = areaParam;
+                    filtrarPorArea();
+                } else {
+                    selectFiltro.value = 'todas';
+                    filtrarPorArea();
+                }
+            }
+        });
+</script>
+</body>
+</html>
+<!-- Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. -->

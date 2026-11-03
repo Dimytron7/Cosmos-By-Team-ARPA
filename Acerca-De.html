@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es" data-hora-auto>
+<head>
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Acerca del Proyecto y Estadísticas</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <style>
+        .stats-stage {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .card {
+            position: relative;
+            border-radius: 22px;
+            background: #23262c;
+            isolation: isolate;
+            width: 100%;
+            max-width: 480px;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: translate(12px, 12px);
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(29,32,37,0.4), rgba(14,15,18,0.6));
+            z-index: -1;
+        }
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: 0 8px 24px rgba(0,0,0,.15);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .lbl {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.62);
+        }
+        .val {
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.1;
+            color: #fff;
+        }
+        .d {
+            padding: 28px 30px 34px;
+            color: #fff;
+            overflow: hidden;
+            background-color: #1b2733;
+            background-image:
+                linear-gradient(rgba(14,18,24,.62), rgba(14,18,24,.72)),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='620'><filter id='w' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.012 .035' numOctaves='5' seed='7'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .42  0 0 0 0 .5  1.6 0 0 0 -.45'/></filter><rect width='100%25' height='100%25' fill='%23182430'/><rect width='100%25' height='100%25' filter='url(%23w)'/></svg>");
+            background-size: cover;
+        }
+        .head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .head svg { width: 24px; height: 24px; flex: none; }
+        .hero-box-light {
+            background: #F4EFEB;
+            padding: 18px 22px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+        .hero-box-light .lbl {
+            color: #555;
+            font-weight: 600;
+        }
+        .hero-box-light .val {
+            font-size: 42px;
+            margin-top: 4px;
+            color: #1A1A1A;
+        }
+        .grid-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            row-gap: 20px;
+            column-gap: 20px;
+        }
+        .grid-stats .val { font-size: 22px; margin-top: 4px; }
+        .grid-stats .full { grid-column: 1 / -1; }
+</style>
+    <script src="JS/Tema.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COSMOS</div>
+        <nav class="nav-links">
+            <a href="Cosmos.html">Inicio</a>
+            <a href="Acerca-De.html" class="active">Acerca de</a>
+            <a href="Catalogo.html">Catálogo</a>
+            <a href="Contacto.html">Contacto</a>
+            <button onclick="alternarModoOscuro()" title="Alternar modo oscuro/claro">
+                🌓 Tema
+            </button>
+        </nav>
+        <form class="search-box" onsubmit="event.preventDefault(); var t = this.querySelector('input').value.trim(); if (t) { window.location.href = 'Cosmos.html?busqueda=' + encodeURIComponent(t); }">
+            <span class="search-icon">🔍</span>
+            <input type="search" placeholder="Buscar simulaciones..." required>
+        </form>
+    </header>
+
+    <main>
+        <section class="hero hero-unico">
+            <div class="hero-content hero-centro">
+                <span class="badge">MINIMUSEO ESCOLAR INTERACTIVO</span>
+                <h1>Acerca de COSMOS</h1>
+                <p class="hero-texto-700">
+                    Un espacio que reúne simulaciones interactivas de PhET para que cualquier persona aprenda física de forma sencilla, experimentando.
+                </p>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Nuestro propósito</h2>
+                <p>Por qué existe COSMOS y hacia dónde quiere llegar.</p>
+            </div>
+            <div class="cards-grid grid-280">
+                <div class="sim-card">
+                    <span class="badge-cat bg-fisica">Misión</span>
+                    <h3>Aprender experimentando</h3>
+                    <p>Acercar la Ciencia a todas las personas de forma sencilla, reuniendo en un solo lugar simulaciones interactivas de PhET para que cada quien aprenda experimentando, a su propio ritmo.</p>
+                </div>
+                <div class="sim-card">
+                    <span class="badge-cat bg-tierra">Visión</span>
+                    <h3>Ciencia al alcance de todos</h3>
+                    <p>Ser un espacio claro y accesible donde cualquiera pueda descubrir la física y otras ciencias, y que desde aquí más personas conozcan el trabajo de PhET.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>¿Cómo usar COSMOS?</h2>
+                <p>En cuatro pasos sencillos.</p>
+            </div>
+            <div class="sim-card card-pasos">
+                <div class="pasos-lista">
+                    <div class="paso-fila">
+                        <span class="badge-cat bg-fisica">Paso 1</span>
+                        <p><strong>Elige un tema.</strong> Entra al Catálogo o escoge una sala desde el Inicio.</p>
+                    </div>
+                    <div class="paso-fila">
+                        <span class="badge-cat bg-math">Paso 2</span>
+                        <p><strong>Busca o filtra.</strong> Usa el buscador o el filtro por área científica para encontrar lo que quieres aprender.</p>
+                    </div>
+                    <div class="paso-fila">
+                        <span class="badge-cat bg-bio">Paso 3</span>
+                        <p><strong>Abre la simulación.</strong> Mueve los controles, cambia valores y observa qué pasa. Equivocarte también es aprender.</p>
+                    </div>
+                    <div class="paso-fila">
+                        <span class="badge-cat bg-quimica">Paso 4</span>
+                        <p><strong>Vuelve cuando quieras.</strong> En el Inicio verás tus últimas interacciones para retomar donde te quedaste.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Preguntas frecuentes</h2>
+                <p>Resolvemos las dudas más comunes sobre COSMOS.</p>
+            </div>
+            <details class="faq-item"><summary><span class="faq-q">¿Las simulaciones son de COSMOS?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>No. Las simulaciones son de PhET Interactive Simulations, de la Universidad de Colorado Boulder. COSMOS las reúne en un minimuseo escolar y agrega explicaciones en español.</p></details>
+            <details class="faq-item"><summary><span class="faq-q">¿Necesito crear una cuenta o pagar?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>No. Puedes explorar todas las simulaciones sin registro.</p></details>
+            <details class="faq-item"><summary><span class="faq-q">¿Cómo encuentro una simulación?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Usa el buscador del menú, o entra al <a href="Catalogo.html">catálogo</a> y filtra por sala.</p></details>
+            <details class="faq-item"><summary><span class="faq-q">¿Qué significan "Vistas" y "Últimas interacciones"?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Son métricas de este navegador: se guardan en tu dispositivo y no se comparten con otras personas.</p></details>
+            <details class="faq-item"><summary><span class="faq-q">¿Puedo usar COSMOS en clase?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Sí. Cada simulación tiene un botón de pantalla completa para presentarla en el aula.</p></details>
+            <details class="faq-item"><summary><span class="faq-q">¿Cómo contacto al equipo?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Escríbenos desde la página de <a href="Contacto.html">Contacto</a>.</p></details>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Personaliza tu experiencia</h2>
+                <p>Elige los colores con los que quieres ver COSMOS.</p>
+            </div>
+            <div class="sim-card card-800">
+                <span class="badge-cat bg-tierra">Colores</span>
+                <h3>Elige tu color</h3>
+                <p>Por defecto los colores cambian solos (AUTO). Toca uno para dejarlo fijo en todo el sitio.</p>
+                <div id="temas"></div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>¿Qué es PhET?</h2>
+                <p>Conoce a los creadores de las simulaciones que verás aquí.</p>
+            </div>
+            <div class="sim-card card-800">
+                <span class="badge-cat bg-tierra">PhET Interactive Simulations</span>
+                <h3>Simulaciones gratuitas para aprender ciencias</h3>
+                <p>PhET es un proyecto sin fines de lucro de la Universidad de Colorado Boulder (Estados Unidos). Crea simulaciones interactivas de física, química, biología, ciencias de la Tierra y matemáticas, pensadas para que estudiantes y docentes exploren fenómenos y descubran cómo funcionan por sí mismos.</p>
+                <p>Todas las simulaciones de COSMOS son obra de PhET y se usan citando su autoría, bajo licencia Creative Commons (CC BY 4.0). Si te gustan, visita su sitio oficial y conoce el resto de su colección.</p>
+                <a href="https://phet.colorado.edu" target="_blank" rel="noopener" class="btn-sim btn-280">Visitar phet.colorado.edu</a>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Acerca de la página</h2>
+                <p>Cómo se hizo COSMOS.</p>
+            </div>
+            <div class="sim-card card-800">
+                <span class="badge-cat bg-fisica">Cómo se hizo</span>
+                <h3>De una idea a una página web</h3>
+                <p>COSMOS parte de una idea de Dimytron7: crear un museo interactivo donde las personas puedan aprender leyendo y experimentando. Dimytron7 estuvo a cargo del diseño, los textos y la identidad visual, y el código se desarrolló con ayuda de inteligencia artificial.</p>
+                <p>La página está hecha con HTML (la estructura), CSS (el diseño) y JavaScript (el comportamiento).</p>
+                <p>Las simulaciones son de PhET. Cada una se incrusta en COSMOS desde el servidor oficial de PhET, configurada en español, y tiene su propio archivo con sus datos: título, área, descripción e imagen. Con esos datos se arman el catálogo, el buscador, los filtros y el carrusel del inicio. Para agregar una simulación nueva basta con crear su archivo y registrarlo.</p>
+                <p>El contador de visitas y el historial de interacciones se guardan solo en el navegador de cada persona.</p>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Panel de Control Analítico</h2>
+                <p>Métricas reales acumuladas en este navegador.</p>
+            </div>
+
+            <div class="cards-grid grid-320">
+                <div class="sim-card card-alta">
+                    <span class="badge-cat bg-fisica">Autoría y Diseño</span>
+                    <h3>Autoría y Créditos</h3>
+                    <p><strong>Autor y diseño:</strong> Proyecto individual de <strong>Dimytron7</strong>, quien ideó COSMOS y definió el flujo pedagógico y la identidad visual (botones, textos y estilo).</p>
+                    <p><strong>Institución:</strong> Desarrollado para la Corporación Tecnológica Industrial de Colombia (TEINCO).</p>
+                    <p><strong>Desarrollo técnico:</strong> Programado con la asistencia de inteligencia artificial: <strong>Gemini</strong> (Google) y <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a> (<a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a>), que ayudaron a traducir la idea creativa en código web.</p>
+                    <div class="nota-marron">
+                        📅 Versión del sistema: 2026
+                    </div>
+                    <hr class="hr-suave">
+                    <p><strong>Créditos de las simulaciones:</strong> Simulaciones por <a href="https://phet.colorado.edu" target="_blank" rel="noopener">PhET Interactive Simulations, University of Colorado Boulder</a>, licenciadas bajo <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> (https://phet.colorado.edu). <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Ver licencia</a>.</p>
+                </div>
+
+                <div class="stats-stage">
+                    <section class="card d" id="widgetStats" aria-label="Estadísticas reales de la plataforma">
+                    </section>
+                </div>
+            </div>
+
+            <div class="centro-30">
+                <button class="btn-sim btn-peligro" onclick="reiniciarEstadisticas()">Restablecer Estadísticas</button>
+            </div>
+        </section>
+
+        <section class="interactions-section">
+            <h2>Registro Reciente de Actividad</h2>
+            <table class="interactions-table">
+                <thead>
+                    <tr>
+                        <th>Módulo / Experimento</th>
+                        <th>Detalle de Interacción</th>
+                    </tr>
+                </thead>
+                <tbody id="globalInteractionsBody">
+                    <tr>
+                        <td class="fila-vacia" colspan="2">Cargando registros...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="footer-olas">
+        <svg class="olas" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,300 C260,190 720,110 1200,0 L1200,300 Z" fill="var(--c1)" opacity=".55"/>
+            <path d="M140,300 C480,215 850,150 1200,45 L1200,300 Z" fill="var(--c2)" opacity=".7"/>
+            <path d="M380,300 C680,250 980,195 1200,105 L1200,300 Z" fill="var(--c3)" opacity=".85"/>
+            <path d="M640,300 C860,282 1050,245 1200,175 L1200,300 Z" fill="var(--c4)"/>
+        </svg>
+        <div class="contenido">
+            <div class="marca">
+                <h2>COSMOS</h2>
+                <small>Minimuseo escolar interactivo</small>
+                <hr>
+                <p class="lema">Explora lo invisible. Aprende experimentando.</p>
+                <p>Únete a la nueva era del aprendizaje científico interactivo en nuestro minimuseo escolar.</p>
+            </div>
+            <div class="columna">
+                <h4>Explorar</h4>
+                <a href="Cosmos.html">Inicio</a>
+                <a href="Catalogo.html">Catálogo</a>
+                <a href="Acerca-De.html">Acerca de</a>
+                <a href="Contacto.html">Contacto</a>
+            </div>
+            <div class="columna">
+                <h4>Salas</h4>
+                <a href="Catalogo.html?area=F%C3%ADsica">Física</a>
+                <a href="Catalogo.html?area=Matem%C3%A1ticas%20y%20Estad%C3%ADstica">Matemáticas y Estadística</a>
+                <a href="Catalogo.html?area=Qu%C3%ADmica">Química</a>
+                <a href="Catalogo.html?area=Tierra%20y%20Espacio">Tierra y Espacio</a>
+                <a href="Catalogo.html?area=Biolog%C3%ADa">Biología</a>
+            </div>
+            <div class="columna">
+                <h4>El proyecto</h4>
+                <span>Creado por Dimytron7</span>
+                <span>Para TEINCO, Colombia</span>
+                <span>Con ayuda de Claude y Gemini</span>
+                <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
+                <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
+            </div>
+        </div>
+        <div class="pie-inferior">
+        <img class="logo-arpa" src="img/logo-arpa.svg" alt="ARPA Smart by Nature">
+        <div class="base">
+            <strong>COSMOS</strong>
+            <div class="contador">
+                <span class="contador-t">Visitas en este navegador</span>
+                <div class="contador-fila">
+                    <span class="contador-num" id="globalPageViews">0</span>
+                    <a href="Acerca-De.html" class="contador-mas" title="Ver Estadísticas y Acerca de">+</a>
+                </div>
+            </div>
+            <span>© 2026 COSMOS. Ciencia para todos.</span>
+        </div>
+        </div>
+    </footer>
+
+    <script src="JS/Metricas.js"></script>
+    <script>
+        function renderWidgetEstadisticas() {
+            const totalCosmos = parseInt(localStorage.getItem('cosmos_global_views')) || 0;
+            let historial = JSON.parse(localStorage.getItem('cosmos_historial')) || [];
+            const sesionActiva = sessionStorage.getItem('cosmos_sesion_activa') ? "Activa" : "Inactiva";
+
+            const htmlWidget = `
+                <div class="head">
+                    <svg viewBox="0 0 24 24" fill="rgba(255,255,255,.7)"><rect x="2" y="12" width="5" height="10" rx="1"/><rect x="9.5" y="3" width="5" height="19" rx="1"/><rect x="17" y="8" width="5" height="14" rx="1"/></svg>
+                    <span class="lbl">Métricas de la Plataforma</span>
+                </div>
+                <div class="hero-box-light">
+                    <div class="lbl">Visitas en este navegador</div>
+                    <div class="val">${totalCosmos}</div>
+                </div>
+                <div class="grid-stats">
+                    <div>
+                        <div class="lbl">Sesión Actual</div>
+                        <div class="val">${sesionActiva}</div>
+                    </div>
+                    <div>
+                        <div class="lbl">Interacciones</div>
+                        <div class="val">${historial.length}</div>
+                    </div>
+                    <div class="full">
+                        <div class="lbl">Origen de Datos</div>
+                        <div class="val val-chico">Almacenamiento Local (Navegador)</div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("widgetStats").innerHTML = htmlWidget;
+
+            const tbody = document.getElementById('globalInteractionsBody');
+            if (historial.length === 0) {
+                tbody.innerHTML = `<tr><td class="fila-vacia" colspan="2">Aún no hay registros guardados en la sesión.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            historial.forEach(h => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${h.nombre}</strong></td>
+                    <td><span class="tag-action">${h.accion} (${h.fecha})</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function reiniciarEstadisticas() {
+            localStorage.removeItem('cosmos_global_views');
+            localStorage.removeItem('cosmos_historial');
+            sessionStorage.removeItem('cosmos_sesion_activa');
+            renderWidgetEstadisticas();
+            alert("Las estadísticas han sido restablecidas a cero.");
+        }
+
+        window.addEventListener('DOMContentLoaded', renderWidgetEstadisticas);
+</script>
+</body>
+</html>
+<!-- Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. -->

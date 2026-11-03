@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" data-hora-auto>
+<head>
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Neurona</title>
+
+    <meta name="experiment-id" content="neurona">
+    <meta name="experiment-title" content="Neurona">
+    <meta name="experiment-area" content="Biología">
+    <meta name="experiment-class-bg" content="bg-bio">
+    <meta name="experiment-image" content="https://phet.colorado.edu/sims/html/neuron/latest/neuron-600.png">
+    <meta name="experiment-hero-img" content="https://phet.colorado.edu/sims/html/neuron/latest/neuron-600.png">
+    <meta name="experiment-description" content="Estimula una neurona y observa cómo se genera y viaja el impulso nervioso.">
+    <meta name="experiment-link" content="experimentos/Neurona.html">
+
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/style2.css">
+    <script src="../JS/Tema.js"></script>
+    <script src="../JS/Extras.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COSMOS</div>
+        <nav class="nav-links">
+            <a href="../Cosmos.html">Inicio</a>
+            <a href="../Acerca-De.html">Acerca de</a>
+            <a href="../Catalogo.html">Catálogo</a>
+            <a href="../Contacto.html">Contacto</a>
+        </nav>
+        <form class="search-box" onsubmit="irABuscarIndex(event)">
+            <span class="search-icon">🔍</span>
+            <input type="search" id="inputBuscarSistema" placeholder="Buscar simulaciones..." required>
+        </form>
+    </header>
+
+    <main class="experiment-view">
+        <div class="experiment-header">
+            <span class="badge-cat bg-bio">Biología</span>
+            <h1>Neurona</h1>
+            <p>Estimula una neurona y observa cómo se genera y viaja el impulso nervioso.</p>
+        </div>
+
+        <div class="simulation-frame-container">
+            <div class="responsive-iframe-wrapper">
+                <div class="loader-sim"><div class="cosmos-loader" role="status" aria-label="Cargando"><span class="cosmos-loader-text">cargando</span><span class="cosmos-load"></span></div></div>
+                <iframe
+                    src="https://phet.colorado.edu/sims/html/neuron/latest/neuron_all.html?locale=es"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="credito-sim">Simulación por <a href="https://phet.colorado.edu" target="_blank" rel="noopener">PhET Interactive Simulations, University of Colorado Boulder</a>, licenciada bajo <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> (https://phet.colorado.edu).</p>
+        </div>
+        <section class="learn-box">
+            <h2>Qué aprenderás</h2>
+            <ul>
+                <li>Cómo una neurona genera un impulso nervioso.</li>
+                <li>Cómo viaja ese impulso a lo largo de la neurona.</li>
+                <li>Qué papel tienen los iones en este proceso.</li>
+            </ul>
+            <h3>Prueba esto</h3>
+            <p>Estimula la neurona y observa cómo se mueven los iones.</p>
+        </section>
+    </main>
+
+    <footer class="footer-olas">
+        <svg class="olas" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,300 C260,190 720,110 1200,0 L1200,300 Z" fill="var(--c1)" opacity=".55"/>
+            <path d="M140,300 C480,215 850,150 1200,45 L1200,300 Z" fill="var(--c2)" opacity=".7"/>
+            <path d="M380,300 C680,250 980,195 1200,105 L1200,300 Z" fill="var(--c3)" opacity=".85"/>
+            <path d="M640,300 C860,282 1050,245 1200,175 L1200,300 Z" fill="var(--c4)"/>
+        </svg>
+        <div class="contenido">
+            <div class="marca">
+                <h2>COSMOS</h2>
+                <small>Minimuseo escolar interactivo</small>
+                <hr>
+                <p class="lema">Explora lo invisible. Aprende experimentando.</p>
+                <p>Únete a la nueva era del aprendizaje científico interactivo en nuestro minimuseo escolar.</p>
+            </div>
+            <div class="columna">
+                <h4>Explorar</h4>
+                <a href="../Cosmos.html">Inicio</a>
+                <a href="../Catalogo.html">Catálogo</a>
+                <a href="../Acerca-De.html">Acerca de</a>
+                <a href="../Contacto.html">Contacto</a>
+            </div>
+            <div class="columna">
+                <h4>Salas</h4>
+                <a href="../Catalogo.html?area=F%C3%ADsica">Física</a>
+                <a href="../Catalogo.html?area=Matem%C3%A1ticas%20y%20Estad%C3%ADstica">Matemáticas y Estadística</a>
+                <a href="../Catalogo.html?area=Qu%C3%ADmica">Química</a>
+                <a href="../Catalogo.html?area=Tierra%20y%20Espacio">Tierra y Espacio</a>
+                <a href="../Catalogo.html?area=Biolog%C3%ADa">Biología</a>
+            </div>
+            <div class="columna">
+                <h4>El proyecto</h4>
+                <span>Creado por Dimytron7</span>
+                <span>Para TEINCO, Colombia</span>
+                <span>Con ayuda de Claude y Gemini</span>
+                <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
+                <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
+            </div>
+        </div>
+        <div class="pie-inferior">
+        <img class="logo-arpa" src="../img/logo-arpa.svg" alt="ARPA Smart by Nature">
+        <div class="base">
+            <strong>COSMOS</strong>
+            <div class="contador">
+                <span class="contador-t">Visitas en este navegador</span>
+                <div class="contador-fila">
+                    <span class="contador-num" id="globalPageViews">0</span>
+                    <a href="../Acerca-De.html" class="contador-mas" title="Ver Estadísticas y Acerca de">+</a>
+                </div>
+            </div>
+            <span>© 2026 COSMOS. Ciencia para todos.</span>
+        </div>
+        </div>
+    </footer>
+
+    <script>
+        function irABuscarIndex(evento) {
+            evento.preventDefault();
+            const termino = document.getElementById('inputBuscarSistema').value.trim();
+            if (termino) {
+                window.location.href = `../Cosmos.html?busqueda=${encodeURIComponent(termino)}`;
+            }
+        }
+</script>
+</body>
+</html>
+<!-- Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. -->

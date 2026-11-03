@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es" data-hora-auto>
+<head>
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Contacto</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="JS/Tema.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COSMOS</div>
+        <nav class="nav-links">
+            <a href="Cosmos.html">Inicio</a>
+            <a href="Acerca-De.html">Acerca de</a>
+            <a href="Catalogo.html">Catálogo</a>
+            <a href="Contacto.html" class="active">Contacto</a>
+            <button onclick="alternarModoOscuro()" title="Alternar modo oscuro/claro">
+                🌓 Tema
+            </button>
+        </nav>
+        <form class="search-box" onsubmit="event.preventDefault(); var t = this.querySelector('input').value.trim(); if (t) { window.location.href = 'Cosmos.html?busqueda=' + encodeURIComponent(t); }">
+            <span class="search-icon">🔍</span>
+            <input type="search" placeholder="Buscar simulaciones..." required>
+        </form>
+    </header>
+
+    <main>
+        <section class="hero hero-unico">
+            <div class="hero-content hero-centro">
+                <span class="badge">MINIMUSEO ESCOLAR INTERACTIVO</span>
+                <h1>Ponte en Contacto</h1>
+                <p class="hero-texto-600">
+                    ¿Tienes dudas, sugerencias sobre las simulaciones o deseas colaborar con el proyecto COSMOS? Escríbenos un mensaje.
+                </p>
+            </div>
+        </section>
+
+        <section class="featured-section seccion-700">
+            <div class="sim-card card-form">
+                <span class="badge-cat bg-fisica">Formulario Directo</span>
+                <h3 class="h3-form">Envíanos tus comentarios</h3>
+
+                <div class="gracias-caja" id="mensajeGracias">
+                    <div class="gracias-emoji">💌</div>
+                    <h3 class="gracias-titulo">¡Gracias por tu apoyo!</h3>
+                    <p class="gracias-texto">Tu mensaje fue enviado correctamente.<br>Volverás al inicio en <strong id="cuentaAtras">5</strong> segundos…</p>
+                    <a class="gracias-enlace" href="Cosmos.html">Ir ahora al inicio</a>
+                </div>
+                <form id="formContacto" class="form-contacto" method="POST">
+
+                    <input type="hidden" name="_subject" value="[Cosmos Plataforma Educativa] Nuevo mensaje de contacto">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input class="oculto-total" type="text" name="_honey" tabindex="-1" autocomplete="off">
+
+                    <span class="input-span">
+                        <label for="nombre" class="label">Tu Nombre</label>
+                        <input type="text" id="nombre" name="Nombre" placeholder="Ej. Ana Pérez" required>
+                    </span>
+
+                    <span class="input-span">
+                        <label for="email" class="label">Correo Electrónico</label>
+                        <input type="email" id="email" name="Correo" placeholder="correo@ejemplo.com" required>
+                    </span>
+
+                    <span class="input-span">
+                        <label for="mensaje" class="label">Mensaje</label>
+                        <textarea id="mensaje" name="Mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </span>
+
+                    <button type="submit" class="submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-olas">
+        <svg class="olas" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,300 C260,190 720,110 1200,0 L1200,300 Z" fill="var(--c1)" opacity=".55"/>
+            <path d="M140,300 C480,215 850,150 1200,45 L1200,300 Z" fill="var(--c2)" opacity=".7"/>
+            <path d="M380,300 C680,250 980,195 1200,105 L1200,300 Z" fill="var(--c3)" opacity=".85"/>
+            <path d="M640,300 C860,282 1050,245 1200,175 L1200,300 Z" fill="var(--c4)"/>
+        </svg>
+        <div class="contenido">
+            <div class="marca">
+                <h2>COSMOS</h2>
+                <small>Minimuseo escolar interactivo</small>
+                <hr>
+                <p class="lema">Explora lo invisible. Aprende experimentando.</p>
+                <p>Únete a la nueva era del aprendizaje científico interactivo en nuestro minimuseo escolar.</p>
+            </div>
+            <div class="columna">
+                <h4>Explorar</h4>
+                <a href="Cosmos.html">Inicio</a>
+                <a href="Catalogo.html">Catálogo</a>
+                <a href="Acerca-De.html">Acerca de</a>
+                <a href="Contacto.html">Contacto</a>
+            </div>
+            <div class="columna">
+                <h4>Salas</h4>
+                <a href="Catalogo.html?area=F%C3%ADsica">Física</a>
+                <a href="Catalogo.html?area=Matem%C3%A1ticas%20y%20Estad%C3%ADstica">Matemáticas y Estadística</a>
+                <a href="Catalogo.html?area=Qu%C3%ADmica">Química</a>
+                <a href="Catalogo.html?area=Tierra%20y%20Espacio">Tierra y Espacio</a>
+                <a href="Catalogo.html?area=Biolog%C3%ADa">Biología</a>
+            </div>
+            <div class="columna">
+                <h4>El proyecto</h4>
+                <span>Creado por Dimytron7</span>
+                <span>Para TEINCO, Colombia</span>
+                <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
+                <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
+            </div>
+        </div>
+        <div class="pie-inferior">
+        <img class="logo-arpa" src="img/logo-arpa.svg" alt="ARPA Smart by Nature">
+        <div class="base">
+            <strong>COSMOS</strong>
+            <div class="contador">
+                <span class="contador-t">Visitas en este navegador</span>
+                <div class="contador-fila">
+                    <span class="contador-num" id="globalPageViews">0</span>
+                    <a href="Acerca-De.html" class="contador-mas" title="Ver Estadísticas y Acerca de">+</a>
+                </div>
+            </div>
+            <span>© 2026 COSMOS. Ciencia para todos.</span>
+        </div>
+        </div>
+    </footer>
+<script>
+    (function () {
+        // Destino del formulario: aquí va el alias aleatorio de FormSubmit en lugar del correo.
+        const FORMSUBMIT_ID = '1032681754@teinco.edu.co';
+        const form = document.getElementById('formContacto');
+        if (!form) return;
+        form.action = 'https://formsubmit.co/' + FORMSUBMIT_ID;
+        const caja = document.getElementById('mensajeGracias');
+        const cuenta = document.getElementById('cuentaAtras');
+
+        const aviso = document.createElement('p');
+        aviso.style.cssText = 'color:#c0392b; font-size:13px; margin-top:10px; display:none;';
+        form.appendChild(aviso);
+
+        function mostrarGracias() {
+            form.style.display = 'none';
+            caja.style.display = 'block';
+            let segundos = 5;
+            const reloj = setInterval(function () {
+                segundos--;
+                cuenta.textContent = segundos;
+                if (segundos <= 0) { clearInterval(reloj); window.location.href = 'Cosmos.html'; }
+            }, 1000);
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            aviso.style.display = 'none';
+            const boton = form.querySelector('[type="submit"]');
+            const textoOriginal = boton.textContent;
+            boton.disabled = true;
+            boton.textContent = 'Enviando...';
+
+            try {
+                // Mismo servicio, pero por el endpoint AJAX: devuelve una respuesta real que podemos revisar
+                const url = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+                const resp = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form)
+                });
+                const datos = await resp.json().catch(function () { return {}; });
+                console.log('FormSubmit respondió:', resp.status, datos);
+                if (resp.ok && String(datos.success) === 'true') {
+                    mostrarGracias();
+                } else {
+                    throw new Error(datos.message || ('Error ' + resp.status));
+                }
+            } catch (err) {
+                boton.disabled = false;
+                boton.textContent = textoOriginal;
+                aviso.textContent = 'No se pudo enviar el mensaje. ' + (err && err.message ? err.message : '') + ' Inténtalo de nuevo.';
+                aviso.style.display = 'block';
+            }
+        });
+    })();
+</script>
+</body>
+</html>
+<!-- Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. -->
