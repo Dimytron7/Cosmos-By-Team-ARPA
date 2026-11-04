@@ -1,6 +1,6 @@
 (function () {
     var GLOBAL = {
-        base: 'https://api.counterapi.dev/v1',
+        base: 'https://abacus.jasoncameron.dev',
         namespace: 'cosmos-team-arpa-dimytron7',
         nombre: 'visitas-globales',
         contarCadaPagina: false,
@@ -19,11 +19,12 @@
     }
 
     function pedir(accion) {
-        var url = GLOBAL.base + '/' + GLOBAL.namespace + '/' + GLOBAL.nombre + '/' + (accion === 'up' ? 'up' : '');
+        var url = GLOBAL.base + '/' + (accion === 'up' ? 'hit' : 'get') + '/' + GLOBAL.namespace + '/' + GLOBAL.nombre;
         var ctl = window.AbortController ? new AbortController() : null;
         var t = ctl ? setTimeout(function () { ctl.abort(); }, GLOBAL.tiempoMax) : null;
         return fetch(url, { cache: 'no-store', signal: ctl ? ctl.signal : undefined })
             .then(function (r) {
+                if (r.status === 404 && accion !== 'up') return { value: 0 };
                 if (!r.ok) throw new Error('HTTP ' + r.status);
                 return r.json();
             })
