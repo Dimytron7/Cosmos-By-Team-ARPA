@@ -220,6 +220,7 @@ body {
 }
 
 .hero-subcontrols { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; gap: 15px; flex-wrap: wrap; }
+.salas-section .hero-subcontrols { margin: 20px 0 0; }
 .salas-selector, .btn-dark-solid, .stat-pill {
     padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; text-decoration: none;
 }

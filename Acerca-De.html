@@ -9,7 +9,9 @@
     <style>
         .stats-stage {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
             padding: 20px 0;
         }
         .card {
@@ -187,7 +189,7 @@
             <details class="faq-item"><summary><span class="faq-q">¿Las simulaciones son de COSMOS?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>No. Las simulaciones son de PhET Interactive Simulations, de la Universidad de Colorado Boulder. COSMOS las reúne en un minimuseo escolar y agrega explicaciones en español.</p></details>
             <details class="faq-item"><summary><span class="faq-q">¿Necesito crear una cuenta o pagar?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>No. Puedes explorar todas las simulaciones sin registro.</p></details>
             <details class="faq-item"><summary><span class="faq-q">¿Cómo encuentro una simulación?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Usa el buscador del menú, o entra al <a href="Catalogo.html">catálogo</a> y filtra por sala.</p></details>
-            <details class="faq-item"><summary><span class="faq-q">¿Qué significan "Vistas" y "Últimas interacciones"?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Son métricas de este navegador: se guardan en tu dispositivo y no se comparten con otras personas.</p></details>
+            <details class="faq-item"><summary><span class="faq-q">¿Qué significan las visitas y las interacciones?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>«Visitas en este navegador» y «Últimas interacciones» se guardan en tu dispositivo y no se comparten. Las «Visitas globales» son un contador en línea que suma las visitas de todas las personas a COSMOS.</p></details>
             <details class="faq-item"><summary><span class="faq-q">¿Puedo usar COSMOS en clase?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Sí. Cada simulación tiene un botón de pantalla completa para presentarla en el aula.</p></details>
             <details class="faq-item"><summary><span class="faq-q">¿Cómo contacto al equipo?</span><span class="faq-flecha" aria-hidden="true"><span class="faq-tip"><i class="t-abrir">Ver respuesta</i><i class="t-cerrar">Cerrar</i></span><b class="faq-glifo">▾</b></span></summary><p>Escríbenos desde la página de <a href="Contacto.html">Contacto</a>.</p></details>
         </section>
@@ -227,17 +229,22 @@
             <div class="sim-card card-800">
                 <span class="badge-cat bg-fisica">Cómo se hizo</span>
                 <h3>De una idea a una página web</h3>
-                <p>COSMOS parte de una idea de Dimytron7: crear un museo interactivo donde las personas puedan aprender leyendo y experimentando. Dimytron7 estuvo a cargo del diseño, los textos y la identidad visual, y el código se desarrolló con ayuda de inteligencia artificial.</p>
+                <p>COSMOS parte de una idea de Dimytron7: crear un museo interactivo donde las personas puedan aprender leyendo y experimentando. Dimytron7 estuvo a cargo del diseño, los textos y la identidad visual de todo el proyecto.</p>
                 <p>La página está hecha con HTML (la estructura), CSS (el diseño) y JavaScript (el comportamiento).</p>
                 <p>Las simulaciones son de PhET. Cada una se incrusta en COSMOS desde el servidor oficial de PhET, configurada en español, y tiene su propio archivo con sus datos: título, área, descripción e imagen. Con esos datos se arman el catálogo, el buscador, los filtros y el carrusel del inicio. Para agregar una simulación nueva basta con crear su archivo y registrarlo.</p>
-                <p>El contador de visitas y el historial de interacciones se guardan solo en el navegador de cada persona.</p>
+                <h3>Cómo funcionan los contadores</h3>
+                <p>COSMOS muestra tres números, y cada uno se cuenta de forma distinta:</p>
+                <p style="padding-left:16px; text-indent:-16px;">• <strong>Visitas en este navegador:</strong> suma 1 cuando abres COSMOS en una sesión nueva (por ejemplo, una pestaña nueva) desde el Inicio, el Catálogo, Acerca de o Contacto. Recargar la página no suma. Se guarda en el almacenamiento local de tu navegador, así que solo tú lo ves.</p>
+                <p style="padding-left:16px; text-indent:-16px;">• <strong>Visitas globales:</strong> es un contador en línea compartido por todas las personas. Suma 1 por visita, entres por la página principal que entres, y por eso es igual para cualquiera que lo mire. Abrir una simulación o recargar no suma.</p>
+                <p style="padding-left:16px; text-indent:-16px;">• <strong>Interacciones:</strong> cada vez que pulsas «Abrir simulación» en el Inicio o en el Catálogo, tu navegador anota el nombre de la simulación, la acción y la hora. Solo se guardan las 5 más recientes y, si repites una simulación, sube al primer lugar en lugar de duplicarse. El número de «Interacciones» es cuántos registros hay en esa lista (máximo 5) y es lo que ves en el Registro Reciente de Actividad.</p>
+                <p>Las visitas del navegador y las interacciones nunca salen de tu dispositivo. El botón «Restablecer estadísticas locales» las borra, pero no toca el contador global.</p>
             </div>
         </section>
 
         <section class="featured-section">
             <div class="section-header">
                 <h2>Panel de Control Analítico</h2>
-                <p>Métricas reales acumuladas en este navegador.</p>
+                <p>Métricas de este navegador y visitas globales de toda la plataforma.</p>
             </div>
 
             <div class="cards-grid grid-320">
@@ -246,7 +253,7 @@
                     <h3>Autoría y Créditos</h3>
                     <p><strong>Autor y diseño:</strong> Proyecto individual de <strong>Dimytron7</strong>, quien ideó COSMOS y definió el flujo pedagógico y la identidad visual (botones, textos y estilo).</p>
                     <p><strong>Institución:</strong> Desarrollado para la Corporación Tecnológica Industrial de Colombia (TEINCO).</p>
-                    <p><strong>Desarrollo técnico:</strong> Programado con la asistencia de inteligencia artificial: <strong>Gemini</strong> (Google) y <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a> (<a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a>), que ayudaron a traducir la idea creativa en código web.</p>
+                    <p><strong>Tecnología:</strong> Sitio web hecho con HTML, CSS y JavaScript, publicado en GitHub Pages. Las simulaciones se cargan desde el servidor oficial de PhET.</p>
                     <div class="nota-marron">
                         📅 Versión del sistema: 2026
                     </div>
@@ -255,13 +262,38 @@
                 </div>
 
                 <div class="stats-stage">
-                    <section class="card d" id="widgetStats" aria-label="Estadísticas reales de la plataforma">
+                    <section class="card d" id="widgetStats" aria-label="Estadísticas de este navegador">
+                    </section>
+
+                    <section class="card d" id="widgetGlobal" aria-label="Visitas globales de la plataforma">
+                        <div class="head">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z"/></svg>
+                            <span class="lbl">Visitas globales</span>
+                        </div>
+                        <div class="hero-box-light">
+                            <div class="lbl">Visitas totales de COSMOS</div>
+                            <div class="val" id="globalViewsTotal" aria-live="polite">…</div>
+                        </div>
+                        <div class="grid-stats">
+                            <div>
+                                <div class="lbl">Estado</div>
+                                <div class="val" id="globalViewsEstado">Conectando…</div>
+                            </div>
+                            <div>
+                                <div class="lbl">Se cuenta</div>
+                                <div class="val">1 por sesión</div>
+                            </div>
+                            <div class="full">
+                                <div class="lbl">Origen de Datos</div>
+                                <div class="val val-chico">Contador en línea (todas las personas)</div>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
 
             <div class="centro-30">
-                <button class="btn-sim btn-peligro" onclick="reiniciarEstadisticas()">Restablecer Estadísticas</button>
+                <button class="btn-sim btn-peligro" onclick="reiniciarEstadisticas()">Restablecer estadísticas locales</button>
             </div>
         </section>
 
@@ -317,7 +349,7 @@
                 <h4>El proyecto</h4>
                 <span>Creado por Dimytron7</span>
                 <span>Para TEINCO, Colombia</span>
-                <span>Con ayuda de Claude y Gemini</span>
+                <span>Hecho con HTML, CSS y JavaScript</span>
                 <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
                 <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
             </div>
@@ -348,7 +380,7 @@
             const htmlWidget = `
                 <div class="head">
                     <svg viewBox="0 0 24 24" fill="rgba(255,255,255,.7)"><rect x="2" y="12" width="5" height="10" rx="1"/><rect x="9.5" y="3" width="5" height="19" rx="1"/><rect x="17" y="8" width="5" height="14" rx="1"/></svg>
-                    <span class="lbl">Métricas de la Plataforma</span>
+                    <span class="lbl">Métricas de este navegador</span>
                 </div>
                 <div class="hero-box-light">
                     <div class="lbl">Visitas en este navegador</div>
@@ -394,7 +426,7 @@
             localStorage.removeItem('cosmos_historial');
             sessionStorage.removeItem('cosmos_sesion_activa');
             renderWidgetEstadisticas();
-            alert("Las estadísticas han sido restablecidas a cero.");
+            alert("Las estadísticas de este navegador se restablecieron a cero. El contador global no cambia.");
         }
 
         window.addEventListener('DOMContentLoaded', renderWidgetEstadisticas);

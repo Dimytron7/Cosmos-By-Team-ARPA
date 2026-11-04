@@ -41,11 +41,6 @@
         <section class="hero" id="heroSlider">
         </section>
 
-        <div class="hero-subcontrols">
-            <a href="Catalogo.html?area=todas" class="salas-selector enlace-plano">Todas las salas</a>
-            <a href="Catalogo.html" class="btn-dark-solid">Explorar catálogo</a>
-        </div>
-
         <section class="salas-section">
             <h2>Explora nuestras salas</h2>
             <div class="salas-grid" id="salasGrid">
@@ -56,6 +51,10 @@
                 <a href="Catalogo.html?area=Biología" class="sala-btn-tag">Biología</a>
             </div>
             <p class="salas-footer-text">Descubre las áreas en la colección destacada.</p>
+            <div class="hero-subcontrols">
+                <a href="Catalogo.html?area=todas" class="salas-selector enlace-plano">Todas las salas</a>
+                <a href="Catalogo.html" class="btn-dark-solid">Explorar catálogo</a>
+            </div>
         </section>
 
         <div class="stats-bar">
@@ -181,7 +180,8 @@
                         imagen: doc.querySelector('meta[name="experiment-image"]')?.content || "",
                         heroImg: doc.querySelector('meta[name="experiment-hero-img"]')?.content || "",
                         descripcion: doc.querySelector('meta[name="experiment-description"]')?.content || "",
-                        link: doc.querySelector('meta[name="experiment-link"]')?.content || file
+                        link: doc.querySelector('meta[name="experiment-link"]')?.content || file,
+                        wiki: doc.querySelector('meta[name="experiment-wiki"]')?.content || "https://es.wikipedia.org"
                     };
                     experimentosDB.push(exp);
                 } catch (e) {
@@ -214,7 +214,7 @@
                         <h1>${item.nombre}</h1>
                         <p>${item.descripcion}</p>
                         <div class="hero-buttons">
-                            <button class="btn-outline" onclick="window.location.href='Catalogo.html'">CATÁLOGO</button>
+                            <a href="${item.wiki}" class="btn-outline" target="_blank" rel="noopener">WIKIPEDIA</a>
                             <a href="${item.link}" class="btn-primary" onclick="registrarVisita('${item.nombre}')">APRENDER</a>
                         </div>
                     </div>
