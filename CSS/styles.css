@@ -805,7 +805,7 @@ html body .grid-280 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)
 .sim-card.card-800 { max-width: 800px; }
 .btn-sim.btn-280 { max-width: 280px; }
 html body .grid-320 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
-.sim-card.card-alta { height: 100%; }
+.sim-card.card-alta { height: auto; margin-bottom: 25px; }
 .sim-card.card-alta p { flex-grow: 0; }
 html body .nota-marron { margin-top: 20px; font-size: 13px; color: var(--accent-brown); font-weight: 600; }
 html body .hr-suave { border: none; border-top: 1px solid var(--border-light); margin: 20px 0; }
