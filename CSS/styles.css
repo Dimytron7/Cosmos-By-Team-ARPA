@@ -832,4 +832,6 @@ html body .sin-resultados { grid-column: 1 / -1; text-align: center; color: #777
 
 .learn-box { overflow-x: clip; }
 
-/* Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. */
+/* Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. */.filter-box select option { color: #222; background: #fff; }
+html[data-modo="oscuro"] .filter-box select option { color: #eee; background: #1b1f24; }
+html[data-modo="oscuro"] { color-scheme: dark; }
