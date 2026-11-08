@@ -818,8 +818,8 @@ html[data-modo="oscuro"] { color-scheme: dark; }
 .skel .skel-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--sk-c); flex: none; }
 .btn-github { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 14px; padding: 14px 22px; border-radius: 14px; background: var(--accent-brown); color: #fff !important; font-size: 16px; font-weight: 700; text-decoration: none !important; transition: transform .25s ease, box-shadow .3s ease, filter .3s ease; }
 .btn-github:hover, .btn-github:focus-visible { transform: translateY(-2px); filter: brightness(1.12); box-shadow: 0 0 10px var(--accent-brown), 0 0 26px color-mix(in srgb, var(--accent-brown) 55%, transparent); }
-html body .hero.hero-unico { background: none; border: none; box-shadow: none; border-radius: 0; overflow: visible; margin: 30px 0 10px; }
-html body .hero.hero-unico:not(#heroSlider):not(:has(.hero-image)) .hero-content { align-items: flex-start; text-align: left; padding: 0; }
-html body .hero.hero-unico:not(#heroSlider):not(:has(.hero-image)) .hero-content h1 { text-align: left; }
-html body .hero.hero-unico [class^="hero-texto"] { margin: 0; }
+html body .hero.hero-unico:not(.hero-tarjeta) { background: none; border: none; box-shadow: none; border-radius: 0; overflow: visible; margin: 30px 0 10px; }
+html body .hero.hero-unico:not(.hero-tarjeta):not(#heroSlider):not(:has(.hero-image)) .hero-content { align-items: flex-start; text-align: left; padding: 0; }
+html body .hero.hero-unico:not(.hero-tarjeta):not(#heroSlider):not(:has(.hero-image)) .hero-content h1 { text-align: left; }
+html body .hero.hero-unico:not(.hero-tarjeta) [class^="hero-texto"] { margin: 0; }
 .filter-controls-bar { background: none; border: none; box-shadow: none; padding: 0; }
