@@ -78,8 +78,95 @@
         if (span) span.innerText = localStorage.getItem('cosmos_global_views') || '1';
     }
 
+
+    var LS_LIKES = 'cosmos_likes', LS_CACHE = 'cosmos_likes_cache';
+    var CORAZON = 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z';
+    var vistos = {};
+
+    function leer(k, def) { try { return JSON.parse(localStorage.getItem(k)) || def; } catch (e) { return def; } }
+    function guardar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+    function apiLike(accion, clave) {
+        return fetch(GLOBAL.base + '/' + accion + '/' + GLOBAL.namespace + '/' + clave)
+            .then(function (r) { return r.status === 404 ? { value: 0 } : r.ok ? r.json() : null; })
+            .catch(function () { return null; });
+    }
+    function totalLikes(id) {
+        if (!vistos[id]) {
+            vistos[id] = Promise.all([apiLike('get', 'like-' + id), apiLike('get', 'unlike-' + id)]).then(function (r) {
+                if (!r[0] || !r[1]) return null;
+                var n = Math.max(0, r[0].value - r[1].value), c = leer(LS_CACHE, {});
+                c[id] = n; guardar(LS_CACHE, c);
+                return n;
+            });
+        }
+        return vistos[id];
+    }
+
+    window.pintarMeGusta = function () {
+        var c = leer(LS_CACHE, {});
+        document.querySelectorAll('[data-mg]:not([data-listo])').forEach(function (el) {
+            var id = el.getAttribute('data-mg'), num = el.querySelector('b');
+            el.setAttribute('data-listo', '');
+            num.textContent = formato(c[id] || 0);
+            totalLikes(id).then(function (n) { if (n !== null) num.textContent = formato(n); });
+        });
+    };
+
+    window.MeGusta = function (caja, id) {
+        var cache = leer(LS_CACHE, {}), liked = leer(LS_LIKES, []).indexOf(id) > -1, n = cache[id] || 0, ocupado = false;
+        caja.innerHTML = '<button type="button" class="mg"><span class="mg-pill"><svg class="mg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="' + CORAZON + '"/></svg><span class="mg-n"></span></span></button>';
+        var b = caja.firstChild, pill = b.firstChild, ico = pill.firstChild, num = pill.lastChild;
+
+        function pintar() {
+            b.setAttribute('aria-pressed', liked);
+            b.setAttribute('aria-label', 'Me gusta, ' + n);
+            num.innerHTML = '<span>' + formato(n) + '</span>';
+        }
+        function recordar() {
+            var c = leer(LS_CACHE, {}), l = leer(LS_LIKES, []).filter(function (x) { return x !== id; });
+            c[id] = n; guardar(LS_CACHE, c);
+            if (liked) l.push(id);
+            guardar(LS_LIKES, l);
+        }
+        pintar();
+        totalLikes(id).then(function (t) { if (t !== null && !ocupado) { n = t; pintar(); } });
+
+        b.addEventListener('click', function () {
+            if (ocupado) return;
+            var antes = n, D = 560;
+            liked = !liked;
+            n = Math.max(0, n + (liked ? 1 : -1));
+            recordar();
+            apiLike('hit', (liked ? 'like-' : 'unlike-') + id);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return pintar();
+
+            ocupado = true;
+            ico.animate([{ transform: 'scale(1)', easing: 'ease-in' }, { transform: 'scale(.3)', offset: .4, easing: 'cubic-bezier(.34,1.56,.64,1)' }, { transform: 'scale(1)' }], D);
+            pill.animate([{ transform: 'scale(1)' }, { transform: 'scale(.97)', offset: .4 }, { transform: 'scale(1)' }], D);
+            setTimeout(function () {
+                b.setAttribute('aria-pressed', liked);
+                var sube = n > antes, a = formato(antes), c = formato(n);
+                num.innerHTML = '<span class="mg-r"><span>' + (sube ? a : c) + '</span><span>' + (sube ? c : a) + '</span></span>';
+                num.firstChild.animate(sube ? [{ transform: 'translateY(0)' }, { transform: 'translateY(-1em)' }] : [{ transform: 'translateY(-1em)' }, { transform: 'translateY(0)' }],
+                    { duration: 350, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'forwards' });
+                setTimeout(pintar, 350);
+            }, D * .4);
+            setTimeout(function () { ocupado = false; }, D);
+        });
+    };
+
+    function iniciarMeGusta() {
+        var caja = document.getElementById('megusta'), meta = document.querySelector('meta[name="experiment-id"]');
+        if (caja && meta) window.MeGusta(caja, meta.content);
+        if (esPaginaPrincipal()) {
+            window.pintarMeGusta();
+            new MutationObserver(window.pintarMeGusta).observe(document.body, { childList: true, subtree: true });
+        }
+    }
+
     window.addEventListener('DOMContentLoaded', function () {
-        try { contarLocal(); } catch (e) {}
+        try { if (esPaginaPrincipal()) contarLocal(); } catch (e) {}
+        iniciarMeGusta();
         if (document.getElementById('globalViewsTotal') || esPaginaPrincipal()) contarGlobal();
     });
 })();

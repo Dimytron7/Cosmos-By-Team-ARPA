@@ -55,7 +55,8 @@
             if (f) f.call(cont);
             else alert('Tu navegador no permite pantalla completa aquí.');
         });
-        cont.insertAdjacentElement('afterend', b);
+        var fila = document.querySelector('.sim-acciones');
+        if (fila) fila.appendChild(b); else cont.insertAdjacentElement('afterend', b);
     }
 
     document.addEventListener('DOMContentLoaded', function () { glosario(); pantallaCompleta(); });

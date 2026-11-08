@@ -217,6 +217,7 @@
                         <div class="hero-buttons">
                             <a href="${item.wiki}" class="btn-outline" target="_blank" rel="noopener">WIKIPEDIA</a>
                             <a href="${item.link}" class="btn-primary" onclick="registrarVisita('${item.nombre}')">APRENDER</a>
+                            <span class="mg-mini mg-boton" data-mg="${item.id}" title="Me gusta">❤️ <b>0</b></span>
                         </div>
                     </div>
                 </div>`;
@@ -276,7 +277,7 @@
                         <span class="badge-cat ${sim.claseBg}">${sim.area}</span>
                         <h3>${sim.nombre}</h3>
                         <p>${resumir(sim.descripcion, 90)}</p>
-                        <a href="${sim.link}" class="btn-sim" onclick="registrarVisita('${sim.nombre}')">Abrir simulación →</a>
+                        <div class="sim-pie"><a href="${sim.link}" class="btn-sim" onclick="registrarVisita('${sim.nombre}')">Abrir simulación →</a><span class="mg-mini" data-mg="${sim.id}" title="Me gusta">❤️ <b>0</b></span></div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -308,7 +309,7 @@
                         <span class="badge-cat ${sim.claseBg}">${sim.area}</span>
                         <h3>${sim.nombre}</h3>
                         <p>${resumir(sim.descripcion, 90)}</p>
-                        <a href="${sim.link}" class="btn-sim" onclick="registrarVisita('${sim.nombre}')">Abrir simulación →</a>
+                        <div class="sim-pie"><a href="${sim.link}" class="btn-sim" onclick="registrarVisita('${sim.nombre}')">Abrir simulación →</a><span class="mg-mini" data-mg="${sim.id}" title="Me gusta">❤️ <b>0</b></span></div>
                     </div>
                     `;
                     grid.appendChild(card);

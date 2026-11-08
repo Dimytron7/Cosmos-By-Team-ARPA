@@ -88,3 +88,15 @@ html[data-modo="oscuro"] .learn-box li { color: #ccc; }
 html[data-modo="oscuro"] .learn-box p { color: #aaa; }
 html[data-modo="oscuro"] .simulation-frame-container { background: var(--card-light); border-color: var(--border-light); }
 /* Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. */
+
+.sim-acciones { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; }
+.sim-acciones .btn-pantalla { margin: 0; }
+.mg { --s: 26px; display: inline-flex; border: 0; background: none; padding: 0; cursor: pointer; font: inherit; color: var(--text-dark); -webkit-tap-highlight-color: transparent; }
+.mg-pill { display: inline-flex; align-items: center; gap: calc(var(--s) * .25); padding: calc(var(--s) * .3) calc(var(--s) * .4) calc(var(--s) * .3) calc(var(--s) * .3); border-radius: 999px; background: color-mix(in srgb, var(--accent-brown) 9%, var(--card-light)); }
+.mg-ico { width: var(--s); height: var(--s); overflow: visible; fill: none; stroke: color-mix(in srgb, var(--text-dark) 45%, transparent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; transition: stroke .16s, fill .16s; }
+.mg:hover .mg-ico { stroke: #ff4d6d; }
+.mg[aria-pressed=true] .mg-ico { fill: #ff4d6d; stroke: #ff4d6d; }
+.mg-n { display: block; height: 1em; overflow: hidden; font-size: calc(var(--s) * .5); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.mg-r { display: flex; flex-direction: column; }
+.mg-r span, .mg-n > span { display: block; height: 1em; }
+@media (prefers-reduced-motion: reduce) { .mg-ico { transition: none; } }

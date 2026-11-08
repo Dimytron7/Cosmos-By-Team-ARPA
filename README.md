@@ -65,6 +65,7 @@ No hay cuentas ni base de datos propia. Todo se guarda en el navegador de cada p
 
 - **Interacciones:** cada vez que se pulsa «Abrir simulación» o «Aprender», se guarda la simulación en `cosmos_historial`. Si ya estaba, se mueve al principio, y la lista conserva solo las 5 más recientes. El número de «Interacciones» es el tamaño de esa lista, es decir, simulaciones distintas recientes, no clics totales.
 - **Visitas en este navegador:** suma 1 al abrir COSMOS en una sesión nueva.
+- **Me gusta:** cada simulación tiene un corazón. El total es compartido, con dos contadores de Abacus por simulación (`like-ID` y `unlike-ID`; el número es la resta). El navegador guarda en `cosmos_likes` qué simulaciones ya marcaste y en `cosmos_likes_cache` el último total.
 - **Visitas globales:** contador en línea compartido por todas las personas, a través de [Abacus](https://v2.jasoncameron.dev/abacus). Suma 1 por sesión desde las páginas principales. Si el servicio no responde, se muestra el último valor guardado.
 
 El botón «Restablecer estadísticas locales» borra el historial y las visitas locales, pero no el contador global.

@@ -137,6 +137,7 @@
                     const doc = parser.parseFromString(htmlText, "text/html");
 
                     const exp = {
+                        id: doc.querySelector('meta[name="experiment-id"]')?.content || "exp",
                         nombre: doc.querySelector('meta[name="experiment-title"]')?.content || "Simulación",
                         area: doc.querySelector('meta[name="experiment-area"]')?.content || "General",
                         claseBg: doc.querySelector('meta[name="experiment-class-bg"]')?.content || "bg-fisica",
@@ -157,7 +158,7 @@
                             <span class="badge-cat ${exp.claseBg}">${exp.area}</span>
                             <h3>${exp.nombre}</h3>
                             <p>${exp.descripcion}</p>
-                            <a href="${exp.link}" class="btn-sim" onclick="registrarVisita('${exp.nombre}')">Abrir simulación →</a>
+                            <div class="sim-pie"><a href="${exp.link}" class="btn-sim" onclick="registrarVisita('${exp.nombre}')">Abrir simulación →</a><span class="mg-mini" data-mg="${exp.id}" title="Me gusta">❤️ <b>0</b></span></div>
                         </div>
                     `;
                     grid.appendChild(card);
