@@ -22,7 +22,7 @@ HTML, CSS y JavaScript sin frameworks ni paso de compilación. Todo se ejecuta e
 index.html            Redirige a Cosmos.html (necesario para GitHub Pages)
 Cosmos.html           Inicio: carrusel, simulaciones destacadas, buscador, últimas interacciones
 Catalogo.html         Catálogo con buscador y filtro por área
-Acerca-De.html        Propósito, cómo usarlo, preguntas frecuentes y métricas
+Acerca-De.html        Misión y visión, selector de temas, cómo usarlo y métricas
 Contacto.html         Formulario de contacto
 experimentos/         Una página por simulación (10)
 CSS/styles.css        Estilos de todo el sitio y de los 5 temas
