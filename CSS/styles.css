@@ -816,3 +816,5 @@ html[data-modo="oscuro"] { color-scheme: dark; }
 .skel-col { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .skel .skel-btn { width: 38%; height: 18px; border-radius: 999px; background: var(--accent-brown); opacity: .85; }
 .skel .skel-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--sk-c); flex: none; }
+.btn-github { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 14px; padding: 14px 22px; border-radius: 14px; background: var(--accent-brown); color: #fff !important; font-size: 16px; font-weight: 700; text-decoration: none !important; transition: transform .25s ease, box-shadow .3s ease, filter .3s ease; }
+.btn-github:hover, .btn-github:focus-visible { transform: translateY(-2px); filter: brightness(1.12); box-shadow: 0 0 10px var(--accent-brown), 0 0 26px color-mix(in srgb, var(--accent-brown) 55%, transparent); }
