@@ -1,9 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=Cosmos.html">
-<title>COSMOS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Minimuseo Escolar Interactivo</title>
+    <meta name="description" content="Minimuseo escolar interactivo con simulaciones científicas de PhET en español: física, química, biología, matemáticas y tierra y espacio.">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="JS/Tema.js"></script>
+    <script>document.documentElement.setAttribute('data-modo', 'oscuro');</script>
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="COSMOS">
+    <meta property="og:title" content="COSMOS - Minimuseo Escolar Interactivo">
+    <meta property="og:description" content="Minimuseo escolar interactivo con simulaciones científicas de PhET en español.">
+    <meta property="og:image" content="https://dimytron7.github.io/Cosmos-By-Team-ARPA/img/og-image.png">
+    <meta property="og:url" content="https://dimytron7.github.io/Cosmos-By-Team-ARPA/">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        html, body { height: 100%; }
+        body { margin: 0; padding: 0; background: #05060f; color: #fff; overflow-x: hidden; }
+        body::before { display: none !important; }
+        .portada { position: relative; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; overflow: hidden; isolation: isolate; }
+        .portada::before { content: ""; position: absolute; inset: 0; z-index: -2; background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--c3) 45%, transparent), transparent 60%); }
+        #aurora { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+        #aurora canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+        .portada-cont { text-align: center; padding: 32px 22px; max-width: 760px; }
+        .portada-logo { height: 84px; width: auto; margin-bottom: 14px; }
+        .portada h1 { margin: 0; font-size: clamp(2.6rem, 9vw, 5.5rem); letter-spacing: .28em; padding-left: .28em; font-weight: 700; }
+        .portada .lema { margin: 16px 0 6px; font-size: clamp(1.05rem, 2.6vw, 1.5rem); font-weight: 500; }
+        .portada .sub { margin: 0 auto; max-width: 560px; opacity: .72; line-height: 1.55; font-size: clamp(.9rem, 2vw, 1.05rem); }
+        .portada-botones { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+        .portada-botones a { padding: 14px 30px; border-radius: 999px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform .25s, filter .25s; }
+        .portada-botones a:hover, .portada-botones a:focus-visible { transform: translateY(-2px); filter: brightness(1.12); }
+        .b-entrar { background: var(--accent-brown); color: #fff; }
+        .b-catalogo { border: 1.5px solid rgba(255,255,255,.55); color: #fff; }
+        .portada-pie { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 12px; opacity: .55; }
+        .portada .portada-pie a { color: inherit; font-weight: inherit; text-decoration: underline; }
+        .portada-cont > * { opacity: 0; transform: translateY(14px); animation: sube .9s cubic-bezier(.23,1,.32,1) forwards; }
+        .portada-cont > :nth-child(2) { animation-delay: .15s; } .portada-cont > :nth-child(3) { animation-delay: .3s; }
+        .portada-cont > :nth-child(4) { animation-delay: .45s; } .portada-cont > :nth-child(5) { animation-delay: .6s; }
+        @keyframes sube { to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .portada-cont > * { animation: none; opacity: 1; transform: none; } }
+    </style>
 </head>
-<body><a href="Cosmos.html">Entrar a COSMOS</a></body>
+<body>
+    <main class="portada">
+        <div id="aurora"><canvas aria-hidden="true"></canvas></div>
+        <div class="portada-cont">
+            <img class="portada-logo" src="img/petalo.svg" alt="">
+            <h1>COSMOS</h1>
+            <p class="lema">Explora lo invisible. Aprende experimentando.</p>
+            <p class="sub">Un minimuseo escolar con simulaciones interactivas de PhET en español: física, química, biología, matemáticas y tierra y espacio.</p>
+            <div class="portada-botones">
+                <a class="b-entrar" href="Cosmos.html">Entrar a COSMOS</a>
+                <a class="b-catalogo" href="Catalogo.html">Ver el catálogo</a>
+            </div>
+        </div>
+        <p class="portada-pie">Simulaciones de <a href="https://phet.colorado.edu" target="_blank" rel="noopener">PhET</a> · Creado por Dimytron7</p>
+    </main>
+    <noscript><p style="text-align:center"><a href="Cosmos.html" style="color:#fff">Entrar a COSMOS</a></p></noscript>
+    <script src="JS/Aurora.js"></script>
+    <script>var v = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    CosmosAurora(document.getElementById('aurora'), { colores: () => [v('--c4'), v('--c2'), v('--c3')], height: .5, glow: .5, brightness: .85, lightMode: false });</script>
+</body>
 </html>

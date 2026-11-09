@@ -19,7 +19,7 @@ HTML, CSS y JavaScript sin frameworks ni paso de compilación. Todo se ejecuta e
 ## Estructura
 
 ```
-index.html            Redirige a Cosmos.html (necesario para GitHub Pages)
+index.html            Portada de entrada con aurora (GitHub Pages abre esta página primero)
 Cosmos.html           Inicio: carrusel, simulaciones destacadas, buscador, últimas interacciones
 Catalogo.html         Catálogo con buscador y filtro por área
 Acerca-De.html        Misión y visión, selector de temas, cómo usarlo y métricas
@@ -30,7 +30,8 @@ CSS/style2.css        Estilos propios de las páginas de simulación
 JS/Registro.js        Lista de simulaciones que forman el catálogo
 JS/Tema.js            Temas de color, modo claro/oscuro y menú que se esconde
 JS/Cosmos.js          Glosario, pantalla completa, contadores de visitas y me gusta
-img/                  Logo, favicon e imagen para compartir el enlace
+JS/Aurora.js          Fondo de aurora de la portada (WebGL, sigue los colores del tema)
+img/                  Logo, pétalo, favicon e imagen para compartir el enlace
 ```
 
 ## Cómo se arma el catálogo
