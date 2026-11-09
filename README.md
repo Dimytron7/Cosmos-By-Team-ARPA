@@ -29,8 +29,7 @@ CSS/styles.css        Estilos de todo el sitio y de los 5 temas
 CSS/style2.css        Estilos propios de las páginas de simulación
 JS/Registro.js        Lista de simulaciones que forman el catálogo
 JS/Tema.js            Temas de color, modo claro/oscuro y menú que se esconde
-JS/Metricas.js        Contadores de visitas (local y global)
-JS/Extras.js          Glosario flotante y botón de pantalla completa
+JS/Cosmos.js          Glosario, pantalla completa, contadores de visitas y me gusta
 img/                  Logo, favicon e imagen para compartir el enlace
 ```
 
