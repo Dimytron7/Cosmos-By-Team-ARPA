@@ -105,6 +105,33 @@
     <meta property="og:image" content="https://dimytron7.github.io/Cosmos-By-Team-ARPA/img/og-image.png">
     <meta property="og:url" content="https://dimytron7.github.io/Cosmos-By-Team-ARPA/Acerca-De.html">
     <meta name="twitter:card" content="summary_large_image">
+    <style>
+    /* 4.3 beta: Acerca de con imagen de la NASA; en celular la imagen va arriba y el propósito debajo */
+    .acerca-split { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
+    .acerca-split > .featured-section { margin: 0; }
+    html body .acerca-split .hero-img {
+        position: relative; margin: 0; min-height: 300px; display: flex; align-items: flex-end; border: 1px solid var(--border-light);
+        background-color: #05060f;
+        background-image: linear-gradient(to top, rgba(5,6,15,.9) 0%, rgba(5,6,15,.5) 50%, rgba(5,6,15,.05) 85%), url("img/acerca-jupiter.jpg");
+        background-size: cover; background-position: center; box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    }
+    html body .acerca-split .hero-img .hero-content { align-items: flex-start; text-align: left; padding: 28px 24px; }
+    html body .acerca-split .hero-img .badge { color: #f2d675; }
+    html body .acerca-split .hero-img .hero-content h1 {
+        font-size: 2rem; background: none !important; color: #fff !important; -webkit-text-fill-color: #fff !important; text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    }
+    html body .acerca-split .hero-img .hero-content p { color: #e6e6e6 !important; margin: 0; max-width: 100%; }
+    .credito-img { position: absolute; top: 10px; right: 14px; font-size: 10px; color: #fff; opacity: .7; }
+    @media (min-width: 1024px) {
+        .acerca-split { display: grid; grid-template-columns: minmax(0, 640px) 1fr; grid-template-areas: "txt hero"; gap: 24px; align-items: stretch; margin-top: 30px; }
+        .acerca-split > .featured-section { grid-area: txt; }
+        .acerca-split .cards-grid { grid-template-columns: 1fr; }
+        html body .acerca-split .hero-img { grid-area: hero; min-height: 520px; }
+        html body .acerca-split .hero-img .hero-content { padding: 40px; }
+        html body .acerca-split .hero-img .hero-content h1 { font-size: 2.6rem; }
+        html body .acerca-split .hero-img .hero-content p { max-width: 90%; }
+    }
+    </style>
 </head>
 <body>
 
@@ -126,7 +153,9 @@
     </header>
 
     <main>
-        <section class="hero hero-unico">
+      <div class="acerca-split">
+        <section class="hero hero-unico hero-tarjeta hero-img">
+            <span class="credito-img">Imagen: NASA</span>
             <div class="hero-content hero-centro">
                 <span class="badge">MINIMUSEO ESCOLAR INTERACTIVO</span>
                 <h1>Acerca de COSMOS</h1>
@@ -154,6 +183,7 @@
                 </div>
             </div>
         </section>
+      </div>
 
         <section class="featured-section">
             <div class="section-header">
@@ -239,7 +269,7 @@
                     <p><strong>Institución:</strong> Desarrollado para la Corporación Tecnológica Industrial de Colombia (TEINCO).</p>
                     <p><strong>Tecnología:</strong> Sitio web hecho con HTML, CSS y JavaScript, publicado en GitHub Pages. Las simulaciones se cargan desde el servidor oficial de PhET.</p>
                     <div class="nota-marron">
-                        📅 Versión del sistema: 4.2 beta
+                        📅 Versión del sistema: 4.3 beta
                     </div>
                     <hr class="hr-suave">
                     <p><strong>Créditos de las simulaciones:</strong> Simulaciones por <a href="https://phet.colorado.edu" target="_blank" rel="noopener">PhET Interactive Simulations, University of Colorado Boulder</a>, licenciadas bajo <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> (https://phet.colorado.edu). <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Ver licencia</a>.</p>
