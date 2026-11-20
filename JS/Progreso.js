@@ -1,9 +1,8 @@
 // Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados.
 import { auth, app } from './Auth.js?v=55';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-const db = getFirestore(app);
+const FS = 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 const LS = 'cosmos_progreso';
 const LS_LIKES = 'cosmos_likes';
 
@@ -40,21 +39,27 @@ function unir(a, b) {
 
 // Une lo de este navegador con lo guardado en la cuenta y deja ambos iguales
 async function sincronizar(u) {
-    const ref = doc(db, 'usuarios', u.uid);
-    let remoto = {};
-    try { const s = await getDoc(ref); remoto = s.exists() ? s.data() : {}; } catch (e) { return null; }
+    let fs, ref, remoto = {};
+    try {
+        fs = await import(FS);
+        ref = fs.doc(fs.getFirestore(app), 'usuarios', u.uid);
+        const s = await fs.getDoc(ref);
+        remoto = s.exists() ? s.data() : {};
+    } catch (e) { return null; }
     const m = unir(datosLocales(), remoto);
     escribir(LS, { vistas: m.vistas, dias: m.dias });
     escribir(LS_LIKES, m.likes);
     const igual = JSON.stringify([remoto.vistas || {}, remoto.dias || [], remoto.likes || []]) === JSON.stringify([m.vistas, m.dias, m.likes]);
-    if (!igual) { try { await setDoc(ref, { vistas: m.vistas, dias: m.dias, likes: m.likes, actualizado: Date.now() }); } catch (e) {} }
+    if (!igual) { try { await fs.setDoc(ref, { vistas: m.vistas, dias: m.dias, likes: m.likes, actualizado: Date.now() }); } catch (e) {} }
     return m;
 }
 
 // ----- Página Progreso.html -----
 const ICONOS = { 'Física': 'g-fisica', 'Química': 'g-quimica', 'Biología': 'g-biologia', 'Tierra y Espacio': 'g-tierra', 'Matemáticas y Estadística': 'g-mate' };
 
-async function cargarSims() {
+let simsPromesa;
+function cargarSims() { return simsPromesa || (simsPromesa = leerSims()); }
+async function leerSims() {
     const lista = await Promise.all(registryFiles.map((f) => fetch(f).then((r) => r.text()).then((t) => {
         const d = new DOMParser().parseFromString(t, 'text/html');
         const g = (n) => { const e = d.querySelector('meta[name="' + n + '"]'); return e ? e.content : ''; };
@@ -133,7 +138,14 @@ async function pintarPagina(u, m) {
 }
 
 registrarLocal();
+// Si hay una sesión recordada se pinta ya con los datos de este navegador; luego se completa con la cuenta
+let recordada = false;
+try { recordada = Object.keys(localStorage).some((k) => k.indexOf('firebase:authUser:') === 0); } catch (e) {}
+if (recordada) pintarPagina(true, datosLocales());
+else pintarPagina(null, null);
 onAuthStateChanged(auth, async (u) => {
-    const m = u ? await sincronizar(u) : null;
-    pintarPagina(u, m);
+    if (!u) return pintarPagina(null, null);
+    pintarPagina(u, datosLocales());
+    const m = await sincronizar(u);
+    if (m) pintarPagina(u, m);
 });
