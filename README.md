@@ -25,6 +25,7 @@ Catalogo.html         Catálogo con buscador y filtro por área
 Acerca-De.html        Misión y visión, selector de temas, cómo usarlo y métricas
 Contacto.html         Formulario de contacto
 Login.html            Entrar o crear cuenta (Firebase), con escena de fases del día
+Progreso.html         Progreso por simulaciones y logros de la cuenta
 experimentos/         Una página por simulación (10)
 CSS/styles.css        Estilos de todo el sitio y de los 5 temas
 CSS/style2.css        Estilos propios de las páginas de simulación
@@ -33,6 +34,7 @@ JS/Tema.js            Temas de color, modo claro/oscuro y menú que se esconde
 JS/Cosmos.js          Glosario, pantalla completa, contadores de visitas y me gusta
 JS/Aurora.js          Fondo de aurora de la portada (WebGL, sigue los colores del tema)
 JS/Auth.js            Conexión con Firebase Authentication y botón Entrar del menú
+JS/Progreso.js        Progreso y logros: se guarda en el navegador y se sincroniza con Firestore
 JS/Login.js           Formulario de Login.html (Google, correo y contraseña, recuperación)
 img/                  Logo, pétalo, favicon e imagen para compartir el enlace
 ```

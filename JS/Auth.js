@@ -11,7 +11,8 @@ const firebaseConfig = {
     appId: '1:615383418038:web:386a0c92b19f6a2009d217'
 };
 
-export const auth = getAuth(initializeApp(firebaseConfig));
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 auth.languageCode = 'es';
 
 const grupo = document.getElementById('navGrupo');
