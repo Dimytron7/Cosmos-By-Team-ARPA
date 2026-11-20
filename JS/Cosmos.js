@@ -171,6 +171,7 @@
         document.querySelectorAll('[data-mg]:not([data-listo])').forEach(function (el) {
             var id = el.getAttribute('data-mg'), num = el.querySelector('b');
             el.setAttribute('data-listo', '');
+            if (leer(LS_LIKES, []).indexOf(id) > -1) el.classList.add('liked');
             num.textContent = formato(c[id] || 0);
             totalLikes(id).then(function (n) { if (n !== null) num.textContent = formato(n); });
         });

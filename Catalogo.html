@@ -27,12 +27,23 @@
             <a href="Acerca-De.html">Acerca de</a>
             <a href="Catalogo.html" class="active">Catálogo</a>
             <a href="Contacto.html">Contacto</a>
-            <button onclick="alternarModoOscuro()" title="Alternar modo oscuro/claro">
-                🌓 Tema
-            </button>
+            <span class="nav-grupo" id="navGrupo">
+                <button type="button" class="btn-tema" onclick="alternarModoOscuro()" title="Alternar modo oscuro/claro">
+                    <svg class="ico-svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 3a9 9 0 0 0 0 18V3z" fill="currentColor" stroke="none"></path>
+                    </svg>
+                    <span>Tema</span>
+                </button>
+            </span>
         </nav>
         <form class="search-box" onsubmit="buscarDesdeCatalogo(event)">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon" aria-hidden="true">
+                <svg class="ico-svg" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
+                </svg>
+            </span>
             <input type="search" id="inputCatSearch" placeholder="Buscar simulaciones..." oninput="aplicarFiltros()">
         </form>
     </header>
@@ -59,7 +70,7 @@
             </div>
         </div>
 
-        <div class="cargando-wrap" id="catalogLoader"><div class="cosmos-loader" role="status" aria-label="Cargando"><span class="cosmos-loader-text">cargando</span><span class="cosmos-load"></span></div></div>
+        <div class="cargando-wrap" id="catalogLoader"><svg class="pl" viewBox="0 0 240 240" role="status" aria-label="Cargando"><circle class="pl__ring pl__ring--a" r="105" cx="120" cy="120"/><circle class="pl__ring pl__ring--b" r="35" cx="120" cy="120"/><circle class="pl__ring pl__ring--c" r="70" cx="85" cy="120"/><circle class="pl__ring pl__ring--d" r="70" cx="155" cy="120"/></svg></div>
         <div class="catalog-grid" id="catalogGrid">
         </div>
     </main>
@@ -97,7 +108,7 @@
             <div class="columna">
                 <h4>El proyecto</h4>
                 <span>Creado por Dimytron7</span>
-                <span>Para TEINCO, Colombia</spam>
+                <span>Para TEINCO, Colombia</span>
                 <a href="https://phet.colorado.edu" target="_blank" rel="noopener">Simulaciones por PhET</a>
                 <a href="https://phet.colorado.edu/en/licensing/html" target="_blank" rel="noopener">Licencias y créditos</a>
             </div>
@@ -123,6 +134,9 @@
     <script src="JS/Registro.js"></script>
     <script>
         let catalogoDB = [];
+
+        const svgCorazon = `<svg class="ico-svg ico-corazon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+        const svgFlecha = `<svg class="ico-svg ico-flecha" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`;
 
         async function cargarCatalogo() {
             catalogoDB = [];
@@ -158,7 +172,7 @@
                             <span class="badge-cat ${exp.claseBg}">${exp.area}</span>
                             <h3>${exp.nombre}</h3>
                             <p>${exp.descripcion}</p>
-                            <div class="sim-pie"><a href="${exp.link}" class="btn-sim" onclick="registrarVisita('${exp.nombre}')">Abrir simulación →</a><span class="mg-mini" data-mg="${exp.id}" title="Me gusta">❤️ <b>0</b></span></div>
+                            <div class="sim-pie"><a href="${exp.link}" class="btn-sim" onclick="registrarVisita('${exp.nombre}')">Abrir simulación ${svgFlecha}</a><span class="mg-mini" data-mg="${exp.id}" title="Me gusta">${svgCorazon} <b>0</b></span></div>
                         </div>
                     `;
                     grid.appendChild(card);

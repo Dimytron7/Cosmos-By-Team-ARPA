@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" data-hora-auto>
+<head>
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Entrar</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="JS/Tema.js"></script>
+    <meta name="description" content="Entra a COSMOS para guardar tu progreso y tus favoritos.">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+</head>
+<body class="lg">
+<!-- Hecho por Dimytron7 con ayuda de Claude y Gemini. Derechos reservados Team ARPA y asociados. -->
+
+<button type="button" class="lg-tema" onclick="alternarModoOscuro()"><svg class="ico-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 0 0 18V3z" fill="currentColor" stroke="none"></path></svg><span>Tema</span></button>
+<div class="lg-escena" aria-hidden="true"></div>
+
+<div class="lg-main">
+    <section class="lg-bienvenida">
+        <img src="img/petalo.svg" alt="">
+        <h1>Bienvenido de nuevo</h1>
+        <p>Explora lo invisible. Aprende experimentando.</p>
+    </section>
+
+    <div class="lg-tarjeta">
+        <img class="lg-marca" src="img/petalo.svg" alt="">
+        <h2 id="lgTitulo">Entra a COSMOS</h2>
+        <p class="lg-sub" id="lgSub">Guarda tu progreso y tus favoritos.</p>
+
+        <form id="lgForm" novalidate>
+            <div class="lg-tabs" role="tablist">
+                <button type="button" data-modo="entrar" class="on">Entrar</button>
+                <button type="button" data-modo="crear">Crear cuenta</button>
+            </div>
+            <div class="lg-campo lg-campo--nombre" id="lgCampoNombre" hidden><input type="text" id="lgNombre" placeholder="Tu nombre" aria-label="Tu nombre" autocomplete="name"></div>
+            <div class="lg-campo lg-campo--correo"><input type="email" id="lgCorreo" placeholder="Correo" aria-label="Correo" autocomplete="email"></div>
+            <div class="lg-campo lg-campo--clave"><input type="password" id="lgClave" placeholder="Contraseña" aria-label="Contraseña" autocomplete="current-password"></div>
+            <div class="lg-msg" id="lgMsg" role="status"></div>
+            <button class="lg-enviar" type="submit" id="lgEnviar">Entrar</button>
+            <button class="lg-link" type="button" id="lgOlvide">¿Olvidaste tu contraseña?</button>
+            <div class="lg-sep">o</div>
+            <button type="button" class="lg-google" id="lgGoogle"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continuar con Google</button>
+        </form>
+
+        <div class="lg-perfil" id="lgPerfil" hidden>
+            <img class="lg-av" id="lgFoto" alt="" hidden>
+            <h3 id="lgNombrePerfil"></h3>
+            <p id="lgMail"></p>
+            <a class="lg-enviar" id="lgIr" href="Cosmos.html">Ir al inicio</a>
+            <button type="button" class="lg-google" id="lgSalir">Cerrar sesión</button>
+        </div>
+
+        <p class="lg-pie"><a href="Cosmos.html">← Volver al inicio</a></p>
+    </div>
+</div>
+
+<script type="module" src="JS/Login.js"></script>
+</body>
+</html>
