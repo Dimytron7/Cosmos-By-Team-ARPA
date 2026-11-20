@@ -997,3 +997,5 @@ html[data-modo="oscuro"] .lg-av { border-color: #fff; }
 .pg-estado a { display: inline-block; padding: 11px 26px; border-radius: 999px; background: var(--accent-brown); color: #fff; font-weight: 600; text-decoration: none; }
 .pg-estado a[hidden] { display: none; }
 .lg-perfil a.lg-google { text-decoration: none; }
+.pg-estado #pgEntrar { display: inline-block; padding: 12px 34px; border-radius: 999px; background: var(--accent-brown); color: #fff !important; font-weight: 600; text-decoration: none; }
+.pg-estado #pgEntrar[hidden] { display: none; }
