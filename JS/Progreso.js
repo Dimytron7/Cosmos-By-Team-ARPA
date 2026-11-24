@@ -159,9 +159,10 @@ async function pintarFranja(u, m) {
         const sig = rangos.filter((r) => r[0] > n)[0];
         const L = logros(sims, areas, m);
         const salas = areas.filter((a) => sims.some((s) => s.area === a && m.vistas[s.id])).length;
-        html = '<div class="pp-anillo-box"><div class="pp-anillo"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="fondo" cx="24" cy="24" r="20"/><circle class="valor" cx="24" cy="24" r="20" style="stroke-dashoffset:' + 125.66 * (1 - (total ? n / total : 0)) + '"/></svg></div><span class="pp-pct">' + Math.round(total ? n / total * 100 : 0) + '%</span></div>' +
+        html = '<div class="pp-anillo-box"><div class="pp-anillo"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="ppGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent-brown)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient></defs><circle class="fondo" cx="24" cy="24" r="20"/><circle class="valor" cx="24" cy="24" r="20" style="stroke-dashoffset:' + 125.66 * (1 - (total ? n / total : 0)) + '"/></svg></div><span class="pp-pct">' + Math.round(total ? n / total * 100 : 0) + '%</span></div>' +
             '<div class="pp-centro"><div class="pp-sup"><span class="pp-badge">' + rango[1] + '</span><span class="pp-titulo">Tu progreso en COSMOS</span></div>' +
-            '<div class="pp-inf"><span>' + n + ' de ' + total + ' simulaciones exploradas</span>' + (sig ? '<span class="pp-sep">·</span><span class="pp-meta"><span>Faltan ' + (sig[0] - n) + ' para ' + sig[1] + '</span><span class="pp-minibarra"><i style="width:' + (n - rango[0]) / (sig[0] - rango[0]) * 100 + '%"></i></span></span>' : '') + '</div></div>' +
+            '<div class="pp-inf"><span>' + n + ' de ' + total + ' simulaciones exploradas</span>' + (sig ? '<span class="pp-sep">·</span><span class="pp-meta">Faltan ' + (sig[0] - n) + ' para ' + sig[1] + '</span>' : '') + '</div><div class="pp-barra"><i style="width:' + (sig ? (n - rango[0]) / (sig[0] - rango[0]) * 100 : 100) + '%"></i></div>'
+            + '</div>' +
             '<div class="pp-chips"><div class="pp-chip"><span>Salas activas</span><strong>' + salas + '</strong></div><div class="pp-chip"><span>Logros</span><strong>' + L.filter((l) => l.v >= l.m).length + ' / ' + L.length + '</strong></div></div>';
     }
     f.innerHTML = html + X;

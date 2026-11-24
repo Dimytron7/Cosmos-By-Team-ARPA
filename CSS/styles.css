@@ -1001,15 +1001,15 @@ html[data-modo="oscuro"] .lg-av { border-color: #fff; }
 .pg-estado #pgEntrar[hidden] { display: none; }
 
 /* Franja de progreso (inicio) */
-.pp { max-width: 1000px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; padding: 7px 14px; border-radius: 999px; background: color-mix(in srgb, var(--accent-brown) 12%, var(--card-light)); border: 1px solid color-mix(in srgb, var(--accent-brown) 30%, transparent); box-shadow: 0 8px 24px rgba(0, 0, 0, .12); color: var(--text-dark); text-decoration: none; transition: transform .2s, border-color .2s; }
+.pp { max-width: 1000px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; padding: 7px 14px; border-radius: 999px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent-brown) 9%, var(--card-light)), color-mix(in srgb, var(--c3) 16%, var(--card-light))); border: 1px solid color-mix(in srgb, var(--accent-brown) 22%, transparent); box-shadow: 0 6px 20px rgba(0, 0, 0, .10); color: var(--text-dark); text-decoration: none; transition: transform .2s, border-color .2s; }
 .pp:hover { transform: translateY(-2px); border-color: var(--accent-brown); }
 .pp[hidden] { display: none; }
 .pp-anillo-box { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .pp-anillo { width: 38px; height: 38px; }
 .pp-anillo svg { width: 38px; height: 38px; transform: rotate(-90deg); }
-.pp-anillo circle { fill: none; stroke-width: 5.5; }
+.pp-anillo circle { fill: none; stroke-width: 7; }
 .pp-anillo .fondo { stroke: color-mix(in srgb, var(--text-dark) 14%, transparent); }
-.pp-anillo .valor { stroke: var(--accent-brown); stroke-linecap: round; stroke-dasharray: 125.66; transition: stroke-dashoffset .35s; }
+.pp-anillo .valor { stroke: url(#ppGrad); stroke-linecap: round; stroke-dasharray: 125.66; transition: stroke-dashoffset .35s; }
 .pp-pct { font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .pp-centro { display: flex; flex-direction: column; gap: 2px; flex: 1 1 200px; min-width: 0; }
 .pp-sup, .pp-inf { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -1017,8 +1017,9 @@ html[data-modo="oscuro"] .lg-av { border-color: #fff; }
 .pp-titulo { font-size: 15px; font-weight: 700; }
 .pp-inf { font-size: 12px; opacity: .8; }
 .pp-meta { display: inline-flex; align-items: center; gap: 8px; }
-.pp-minibarra { width: 64px; height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--text-dark) 14%, transparent); overflow: hidden; }
-.pp-minibarra i { display: block; height: 100%; border-radius: 999px; background: var(--accent-brown); transition: width .35s; }
+.pp-barra { height: 5px; margin-top: 3px; border-radius: 999px; background: color-mix(in srgb, var(--text-dark) 12%, transparent); overflow: hidden; }
+.pp-barra i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent-brown), var(--c3)); transition: width .35s; }
+html[data-modo="oscuro"] .pp-anillo .valor { filter: drop-shadow(0 0 3px var(--accent-brown)); }
 .pp-chips { display: flex; gap: 8px; flex-shrink: 0; }
 .pp-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; font-size: 12px; background: color-mix(in srgb, var(--text-dark) 6%, transparent); border: 1px solid color-mix(in srgb, var(--text-dark) 14%, transparent); }
 .pp-x { all: unset; box-sizing: border-box; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; cursor: pointer; opacity: .6; flex-shrink: 0; }
