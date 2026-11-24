@@ -137,15 +137,53 @@ async function pintarPagina(u, m) {
     cont.hidden = false;
 }
 
+// ----- Franja de progreso en el inicio -----
+const X = '<button type="button" class="pp-x" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+async function pintarFranja(u, m) {
+    const f = document.getElementById('franja');
+    if (!f) return;
+    let cerrada = false;
+    try { cerrada = sessionStorage.getItem('cosmos_franja_off') === '1'; } catch (e) {}
+    if (cerrada) return;
+    let html;
+    if (!u || !m) {
+        html = '<span class="pp-ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></span>' +
+            '<div class="pp-centro"><span class="pp-titulo">Guarda tu progreso y gana logros</span><span class="pp-inf pp-sin-t">Entra con tu cuenta y COSMOS recordará lo que exploraste.</span></div><span class="pp-cta">Entrar</span>';
+    } else {
+        const sims = await cargarSims();
+        const total = sims.length;
+        const areas = Array.from(new Set(sims.map((s) => s.area))).filter(Boolean);
+        const n = sims.filter((s) => m.vistas[s.id]).length;
+        const rangos = [[0, 'Visitante'], [1, 'Aprendiz'], [3, 'Curioso'], [5, 'Explorador'], [total, 'Cosmonauta']];
+        const rango = rangos.filter((r) => n >= r[0]).pop();
+        const sig = rangos.filter((r) => r[0] > n)[0];
+        const L = logros(sims, areas, m);
+        const salas = areas.filter((a) => sims.some((s) => s.area === a && m.vistas[s.id])).length;
+        html = '<div class="pp-anillo-box"><div class="pp-anillo"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="fondo" cx="24" cy="24" r="20"/><circle class="valor" cx="24" cy="24" r="20" style="stroke-dashoffset:' + 125.66 * (1 - (total ? n / total : 0)) + '"/></svg></div><span class="pp-pct">' + Math.round(total ? n / total * 100 : 0) + '%</span></div>' +
+            '<div class="pp-centro"><div class="pp-sup"><span class="pp-badge">' + rango[1] + '</span><span class="pp-titulo">Tu progreso en COSMOS</span></div>' +
+            '<div class="pp-inf"><span>' + n + ' de ' + total + ' simulaciones exploradas</span>' + (sig ? '<span class="pp-sep">·</span><span class="pp-meta"><span>Faltan ' + (sig[0] - n) + ' para ' + sig[1] + '</span><span class="pp-minibarra"><i style="width:' + (n - rango[0]) / (sig[0] - rango[0]) * 100 + '%"></i></span></span>' : '') + '</div></div>' +
+            '<div class="pp-chips"><div class="pp-chip"><span>Salas activas</span><strong>' + salas + '</strong></div><div class="pp-chip"><span>Logros</span><strong>' + L.filter((l) => l.v >= l.m).length + ' / ' + L.length + '</strong></div></div>';
+    }
+    f.innerHTML = html + X;
+    f.hidden = false;
+    f.onclick = () => { location.href = u ? 'Progreso.html' : 'Login.html?volver=Cosmos.html'; };
+    f.querySelector('.pp-x').onclick = (e) => {
+        e.stopPropagation();
+        f.hidden = true;
+        try { sessionStorage.setItem('cosmos_franja_off', '1'); } catch (er) {}
+    };
+}
+
 registrarLocal();
 // Si hay una sesión recordada se pinta ya con los datos de este navegador; luego se completa con la cuenta
 let recordada = false;
 try { recordada = Object.keys(localStorage).some((k) => k.indexOf('firebase:authUser:') === 0); } catch (e) {}
-if (recordada) pintarPagina(true, datosLocales());
-else pintarPagina(null, null);
+if (recordada) { pintarPagina(true, datosLocales()); pintarFranja(true, datosLocales()); }
+else { pintarPagina(null, null); pintarFranja(null, null); }
 onAuthStateChanged(auth, async (u) => {
-    if (!u) return pintarPagina(null, null);
+    if (!u) { pintarPagina(null, null); return pintarFranja(null, null); }
     pintarPagina(u, datosLocales());
+    pintarFranja(u, datosLocales());
     const m = await sincronizar(u);
-    if (m) pintarPagina(u, m);
+    if (m) { pintarPagina(u, m); pintarFranja(u, m); }
 });
