@@ -1029,3 +1029,5 @@ html[data-modo="oscuro"] .pp-anillo .valor { filter: drop-shadow(0 0 3px var(--a
 .pp-ico svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .pp-cta { padding: 8px 18px; border-radius: 999px; background: var(--accent-brown); color: #fff; font-size: 13px; font-weight: 600; }
 @media (max-width: 820px) { .pp { border-radius: 20px; padding: 6px 8px 6px 10px; gap: 8px; } .pp-chips, .pp-titulo, .pp-sep, .pp-meta { display: none; } .pp-anillo-box { gap: 6px; } .pp-anillo, .pp-anillo svg { width: 34px; height: 34px; } .pp-pct { font-size: 12px; } .pp-inf { font-size: 11.5px; } .pp-ico { width: 32px; height: 32px; } .pp-cta { padding: 6px 14px; font-size: 12px; } .pp-x { width: 24px; height: 24px; } .pp-sin-t { display: none; } }
+.pp-sin-ti { font-size: 15px; font-weight: 700; }
+@media (max-width: 820px) { .pp-sin-ti { font-size: 13px; line-height: 1.25; } }

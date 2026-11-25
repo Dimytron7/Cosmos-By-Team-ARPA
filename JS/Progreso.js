@@ -148,7 +148,7 @@ async function pintarFranja(u, m) {
     let html;
     if (!u || !m) {
         html = '<span class="pp-ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></span>' +
-            '<div class="pp-centro"><span class="pp-titulo">Guarda tu progreso y gana logros</span><span class="pp-inf pp-sin-t">Entra con tu cuenta y COSMOS recordará lo que exploraste.</span></div><span class="pp-cta">Entrar</span>';
+            '<div class="pp-centro"><span class="pp-sin-ti">Guarda tu progreso y gana logros</span><span class="pp-inf pp-sin-t">Entra con tu cuenta y COSMOS recordará lo que exploraste.</span></div><span class="pp-cta">Entrar</span>';
     } else {
         const sims = await cargarSims();
         const total = sims.length;
